@@ -44,4 +44,10 @@ return [
         ],
     ],
 
+    'facebook' => [
+        'client_id' => env('FACEBOOK_CLIENT_ID', '479110156262084'),
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET', 'e6bb08f7236932666028534680f6f0c0'),
+        'redirect' => env('FACEBOOK_CALLBACK_URL', 'https://wood-grove.local/auth/facebook/callback'),
+    ],
+
 ];
