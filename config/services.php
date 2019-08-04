@@ -59,6 +59,7 @@ return [
     'azure' => [
         'client_id' => env('AZURE_KEY', 'dd4be5b3-a355-41c9-ae51-7f11f410d7eb'),
         'client_secret' => env('AZURE_SECRET', 'g4AxVJ**/@Mywuz0fqXZ0SADcMalrLC7'),
+        'tenant' => env('AZURE_TENANT', 'e641cd52-98e6-429c-92b7-07442a6a40bc'),
         'redirect' => env('AZURE_REDIRECT_URI', 'https://wood-grove.speralabs.com/login/azure/callback')
     ],
 ];
