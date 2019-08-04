@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c46111ea21ffbbd99e9fb54630997f04",
+    "content-hash": "cc45ddca14e67360a869b75e80484303",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1907,6 +1907,43 @@
             ],
             "description": "Microsoft OAuth2 Provider for Laravel Socialite",
             "time": "2018-09-03T10:33:54+00:00"
+        },
+        {
+            "name": "socialiteproviders/microsoft-azure",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SocialiteProviders/Microsoft-Azure.git",
+                "reference": "d7a703a782eb9f7eae0db803beaa3ddec19ef372"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SocialiteProviders/Microsoft-Azure/zipball/d7a703a782eb9f7eae0db803beaa3ddec19ef372",
+                "reference": "d7a703a782eb9f7eae0db803beaa3ddec19ef372",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0",
+                "socialiteproviders/manager": "~3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SocialiteProviders\\Azure\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Hemmings",
+                    "email": "chris@hemmin.gs"
+                }
+            ],
+            "description": "Microsoft Azure OAuth2 Provider for Laravel Socialite",
+            "time": "2017-01-25T09:48:29+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
