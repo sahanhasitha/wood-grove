@@ -16,6 +16,9 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('home', 'HomeController@index')->name('home');
 
+/**
+ * Auth routes
+ */
 Route::get('login/{provider}', 'Auth\SocialController@redirect');
 Route::get('login/{provider}/callback','Auth\SocialController@callback');
 Route::post('social-register','Auth\SocialController@doRegister')->name('social-register');
