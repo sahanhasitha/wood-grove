@@ -345,8 +345,8 @@
                                         <img src="img/!logged-user.jpg">
                                     </div>
                                     <div class="profile-info">
-                                        <h4 class="name font-weight-semibold">John Doe</h4>
-                                        <h5 class="role">Administrator</h5>
+                                        <h4 class="name font-weight-semibold">{{Auth::user()->name}}</h4>
+                                        <h5 class="role">{{Auth::user()->email}}</h5>
                                         <div class="profile-footer">
                                             <a href="#">(edit profile)</a>
                                         </div>
