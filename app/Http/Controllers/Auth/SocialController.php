@@ -40,18 +40,21 @@ class SocialController extends Controller
         if($user){
             return $this->login($user);
         } else {
-            return $this->login($this->proceedRegister($platform, $userSocial));
+            return $this->proceedRegister($platform, $userSocial);
         }
     }
 
     public function proceedRegister($platform, $data){
-        return $this->user->create([
+        return view('auth.social-reg-agreement')->with(['user' => [
             'email' => $data->email,
             'name' => $data->name,
-            'password' => str_random(10),
             'provider' => $platform,
             'provider_id' => $data->id
-        ]);
+        ]]);
+    }
+
+    public function doRegister(Request $request){
+        return $this->login($this->user->create($request->all()));
     }
 
     public function login(User $user){
