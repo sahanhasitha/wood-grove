@@ -11,7 +11,7 @@
                 <h2 class="title text-uppercase font-weight-bold m-0"><i class="fas fa-user mr-1"></i> Sign Up</h2>
             </div>
             <div class="card-body">
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" action="{{ route('register') }}">
                     @csrf
                     <div class="form-group mb-3">
                         <label>Name</label>
