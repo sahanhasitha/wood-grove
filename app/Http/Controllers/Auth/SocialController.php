@@ -54,7 +54,10 @@ class SocialController extends Controller
     }
 
     public function doRegister(Request $request){
-        return $this->login($this->user->create($request->all()));
+        $data = $request->alll();
+        $data['password'] = str_random(10);
+        
+        return $this->login($this->user->create($data));
     }
 
     public function login(User $user){
