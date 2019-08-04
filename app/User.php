@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'facebook_id'
+        'name', 'email', 'password', 'provider', 'provider_id'
     ];
 
     /**
@@ -37,16 +37,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function addNewFb($input)
-    {
-        $check = static::where('facebook_id',$input['facebook_id'])->first();
-
-
-        if(is_null($check)){
-            return static::create($input);
-        }
-
-
-        return $check;
+    /**
+     * Find user by email
+     * @param $mail
+     * @return mixed
+     */
+    public function findByEmail($mail){
+        return User::where('email', $mail)->first();
     }
 }
