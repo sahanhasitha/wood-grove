@@ -25,6 +25,10 @@ class SocialController extends Controller
 
     public function callback(Request $request, $provider)
     {
+        if($request->error_message){
+            return redirect()->back()->with(['danger'=>$request->error_message]);
+        }
+
         $platform = explode('/', $request->getRequestUri())[2];
 
         $userSocial = Socialite::driver($provider)->user();
