@@ -53,7 +53,12 @@ return [
     'google' => [
         'client_id'     => env('GOOGLE_CLIENT_ID', '587043927752-5epa0clju4eqfhit7jq44p6gmsdlkdmv.apps.googleusercontent.com'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET', 'doiKMjQG_Yj9z9yEhFhNT6ds'),
-        'redirect'      => env('GOOGLE_REDIRECT', 'http://wood-grove.speralabs.com/login/google/callback')
+        'redirect'      => env('GOOGLE_REDIRECT', 'https://wood-grove.speralabs.com/login/google/callback')
     ],
 
+    'azure' => [
+        'client_id' => env('AZURE_KEY', 'dd4be5b3-a355-41c9-ae51-7f11f410d7eb'),
+        'client_secret' => env('AZURE_SECRET', 'g4AxVJ**/@Mywuz0fqXZ0SADcMalrLC7'),
+        'redirect' => env('AZURE_REDIRECT_URI', 'https://wood-grove.speralabs.com/login/azure/callback')
+    ],
 ];
