@@ -22,6 +22,29 @@
 
         <!-- start: page -->
         <div class="row">
+            <div class="col-md-8">
+                <div class="alert alert-danger alert-dismissible fade show d-none warning-alert" role="alert">
+                    <strong>Something wrong!</strong> Your activity is not saving due to incorrect data insertion. check again!
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header d-flex">
+                        <h5 class="card-title">Events | Reservations</h5>
+
+                    </div>
+                    <div class="card-body">
+                        <div id='calendar'></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        {{--  <div class="row">
             <div class="col-lg-6 mb-3">
                 <section class="card">
                     <div class="card-body">
@@ -781,7 +804,276 @@
                     </div>
                 </section>
             </div>
-        </div>
+        </div>  --}}
         <!-- end: page -->
     </section>
+
+{{--  add event modal  --}}
+<div id="editEventModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Event</h4>
+            </div>
+                <form action="{{ route('store-event-details') }}" method="POST">
+                    @csrf
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="inputRounded">Name <small
+                                    class="text-danger">*</small></label>
+                            <div class="col-md-12">
+                                <input type="text" value="{{ old('name') }}" id="name"
+                                    class="form-control input-rounded {{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                    name="name">
+                                @if ($errors->has('name'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('name') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Company <small class="text-danger">*</small></label>
+
+                            <div class="col-md-12">
+                                <select class="form-control input-rounded col-md-12" name="company_id" id="company_id">
+                                    @foreach ($companies as $company)
+                                    <option value="{{ $company->id }}">{{ $company->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-5 control-label">Start Date <small class="text-danger">*</small><small>
+                                    (yyyy-mm-dd)</small></label>
+                            <div class="col-md-12">
+                                <input type="text" value="{{ old('start_date') }}" style="background-color: #fff!important" readonly
+                                    id="start_date_event"
+                                    class="form-control input-rounded {{ $errors->has('start_date') ? ' is-invalid' : '' }}"
+                                    name="start_date">
+                                @if ($errors->has('start_date'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('start_date') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-5 control-label">End Date <small class="text-danger">*</small><small>
+                                    (yyyy-mm-dd)</small></label>
+                            <div class="col-md-12">
+                                <input type="text" value="{{ old('end_date') }}" style="background-color: #fff!important" readonly
+                                    id="end_date"
+                                    class="form-control input-rounded {{ $errors->has('end_date') ? ' is-invalid' : '' }}"
+                                    name="end_date">
+                                @if ($errors->has('end_date'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('end_date') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Price <small class="text-danger">*</small></label>
+                            <div class="col-md-12">
+                                <input type="text" value="{{ old('price') }}" id="price"
+                                    class="form-control input-rounded {{ $errors->has('price') ? ' is-invalid' : '' }}"
+                                    name="price">
+                                @if ($errors->has('price'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('price') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Description <small
+                                    class="text-danger">*</small></label>
+                            <div class="col-md-12">
+                                <textarea id="description"
+                                    class="form-control input-rounded {{ $errors->has('description') ? ' is-invalid' : '' }}"
+                                    rows="5" name="description" placeholder="Type description
+                                here">{{ old('decription') }}</textarea>
+                                @if ($errors->has('description'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('description') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-success float-right">Next <i
+                                    class="fas fa-hand-point-right"></i></a>
+                        </div>
+                </form>
+        </div>
+    </div>
+</div>
+{{--  end add event modal  --}}
+{{--  add reservation modal  --}}
+<div id="editReservationModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Reservation</h4>
+            </div>
+            <form action="{{ route('store-reservation-details') }}" method="POST">
+                @csrf
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="inputRounded">Name <small
+                                class="text-danger">*</small></label>
+                        <div class="col-md-12">
+                            <input type="text" value="{{ old('name') }}" id="name"
+                                class="form-control input-rounded {{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                name="name">
+                            @if ($errors->has('name'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('name') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Company <small class="text-danger">*</small></label>
+
+                        <div class="col-md-12">
+                            <select class="form-control input-rounded col-md-12" name="company_id" id="company_id">
+                                @foreach ($companies as $company)
+                                <option value="{{ $company->id }}">{{ $company->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-5 control-label">Start Date <small class="text-danger">*</small><small>
+                                (yyyy-mm-dd)</small></label>
+                        <div class="col-md-12">
+                            <input type="text"
+                                value="{{ old('start_date') }}" style="background-color: #fff!important" readonly
+                                id="start_date_reservation"
+                                class="form-control input-rounded {{ $errors->has('start_date') ? ' is-invalid' : '' }}"
+                                name="start_date">
+                            @if ($errors->has('start_date'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('start_date') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-5 control-label">End Date <small class="text-danger">*</small><small>
+                                (yyyy-mm-dd)</small></label>
+                        <div class="col-md-12">
+                            <input type="text" value="{{ old('end_date') }}" style="background-color: #fff!important" readonly
+                                id="end_date"
+                                class="form-control input-rounded {{ $errors->has('end_date') ? ' is-invalid' : '' }}"
+                                name="end_date">
+                            @if ($errors->has('end_date'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('end_date') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Description <small class="text-danger">*</small></label>
+                        <div class="col-md-12">
+                            <textarea id="description"
+                                class="form-control input-rounded {{ $errors->has('description') ? ' is-invalid' : '' }}"
+                                rows="5" name="description" placeholder="Type description
+                                here">{{ old('decription') }}</textarea>
+                            @if ($errors->has('description'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('description') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-success float-right">Next <i
+                                class="fas fa-hand-point-right"></i></a>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+{{--  end add reservation modal  --}}
+
+@endsection
+@section('js')
+    <script>
+        $(document).ready(function () {
+            $('#start_date_event').datepicker({
+            dateFormat: 'yy-mm-dd'
+            });
+            $('#start_date_reservation').datepicker({
+            dateFormat: 'yy-mm-dd'
+            });
+            $('#end_date').datepicker({
+            dateFormat: 'yy-mm-dd'
+            });
+            // page is now ready, initialize the calendar...
+            $('#calendar').fullCalendar({
+                // put your options and callbacks here
+                events: [
+                    //events
+                    @foreach($events as $event) {
+                        title: '{{ $event->name }}',
+                        start: '{{ $event->start_date }}',
+                        end: '{{ $event->end_date }}T23:59:59',
+                        url: '{{ route('add-new-event', $event->id) }}',
+                        color: 'green'
+                    },
+                    @endforeach
+                    //reservations
+                    @foreach($reservations as $reservation) {
+                        title: '{{ $reservation->name }}',
+                        start: '{{ $reservation->start_date }}',
+                        end: '{{ $reservation->end_date }}T23:59:59',
+                        url: '{{ route('add-new-reservation', $reservation->id) }}',
+                        color: 'blue'
+                        },
+                    @endforeach
+                ],
+
+
+                displayEventTime: false,
+                dayClick: function(date, jsEvent, view) {
+                                var date = date.format();
+                    $.confirm({
+                        title: 'What Do You Want to create?',
+                        content: 'Select here!',
+                        theme: 'supervan',
+                        buttons: {
+                            Event: function () {
+                                $('#start_date_event').val(date);
+                                $('#editEventModal').modal('show');
+                            },
+                            Reservation: function () {
+                                $('#start_date_reservation').val(date);
+                                $('#editReservationModal').modal('show');
+                                $("#editReservationModal").appendTo("body");
+                            },
+                            Cancel: function(){
+
+                            }
+                        }
+                    });
+
+                }
+            })
+
+@if (count($errors) > 0)
+$('.warning-alert').removeClass('d-none');
+@endif
+
+        });
+    </script>
 @endsection

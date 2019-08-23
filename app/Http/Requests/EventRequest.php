@@ -26,8 +26,8 @@ class EventRequest extends FormRequest
         return [
             "name" => "required",
             "company_id" => "required",
-            "start_date" => "required|date_format:d/m/Y",
-            "end_date" => "required|date_format:d/m/Y",
+            "start_date" => "required|date_format:Y-m-d",
+            "end_date" => "required|date_format:Y-m-d",
             "description" => "required",
             "price" => "numeric|required",
         ];
