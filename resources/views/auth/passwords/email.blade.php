@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('auth.app')
 
 @section('content')
-<div class="container">
+<div class="container mt-4">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Reset Password') }}</div>
 
@@ -36,6 +36,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Send Password Reset Link') }}
                                 </button>
+                                <a href="{{ route('login') }}" class="float-right mt-2 text-primary"><i class="fas fa-arrow-circle-left"></i> Go back to login</a>
                             </div>
                         </div>
                     </form>
