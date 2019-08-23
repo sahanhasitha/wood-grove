@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserUpdateRequest;
 use domain\Facades\CompanyFacade;
 use domain\Facades\UserFacade;
 use Illuminate\Http\Request;
@@ -36,8 +37,14 @@ class UserController extends Controller
      */
     public function storeUserDetails(UserRequest $request)
     {
-        $response['users'] = UserFacade::make($request->all());
-        return redirect(route('users'))->with($response);
+        $email_check = UserFacade::checkEmail($request->email);
+        if($email_check==[])
+        {
+            $response['users'] = UserFacade::make($request->all());
+            return redirect(route('users'))->with($response);
+        }else{
+            return redirect()->back()->with('error', $request->email);
+        }
     }
     /**
      * Delete type details.
@@ -62,10 +69,10 @@ class UserController extends Controller
     }
     /**
      * update type details.
-     * @param Request
+     * @param UserUpdateRequest
      * @return response
      */
-    public function updateUser(Request $request)
+    public function updateUser(UserUpdateRequest $request)
     {
         UserFacade::updateUser($request->all());
         return redirect(route('users'))->with('edited', 'User is successfully Updated');

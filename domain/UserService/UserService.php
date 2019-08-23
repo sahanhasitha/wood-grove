@@ -68,6 +68,10 @@ class UserService
     {
         return $this->create($data);
     }
+    public function checkEmail($data)
+    {
+        return $this->user->where('email',$data)->first();
+    }
     public function create($data)
     {
         return $this->user->create([

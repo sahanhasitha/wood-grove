@@ -101,19 +101,18 @@
             </select>
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-md-12">
-            <div class="switch switch-primary float-right">
-                <div class="ios-switch off">
-                    <div class="on-background background-fill"></div>
-                    <div class="state-background background-fill"></div>
-                    <div class="handle"></div>
-                </div><input type="hidden" name="is_admin" id="is_admin" value="0">
-            </div>
-        </div>
-        <label class="col-md-2 control-label float-right" for="inputRounded">Admin User <small
-                class="text-danger">*</small></label>
-    </div>
+   <div class="form-group">
+       <div class="col-md-12">
+           <div class="switch switch-primary float-right">
+               <div class="ios-switch off">
+                   <div class="on-background background-fill"></div>
+                   <div class="state-background background-fill"></div>
+                   <div class="handle"></div>
+               </div><input type="hidden" name="is_admin" id="is_admin" value="0">
+           </div>
+       </div>
+       <label class="col-md-2 control-label float-right" for="inputRounded">Admin User</label>
+   </div>
 </div>
 <div class="card-footer">
     <div class="col-md-12">
@@ -130,6 +129,11 @@
     <script>
 
     $(document).ready(function () {
+
+        @if (count($errors) > 0)
+        $('#editUserModal').modal('show');
+        @endif
+
     $('#users-table').DataTable();
     });
 
@@ -209,5 +213,29 @@ function success(msg){
     icon: 'success'
 })
 }
+
+  // toogle switch
+    $('.ios-switch').on('click', function(){
+        if($('#is_admin').val()==0){
+            $.confirm({
+                    title: 'Are You Sure?',
+                    content: 'Admin user can change anything!',
+                    buttons: {
+                        confirm: function () {
+                             $('.ios-switch').removeClass('off');
+                             $('.ios-switch').addClass('on');
+                             $('#is_admin').val(1);
+                        },
+                        cancel: function () {
+
+                        },
+                    }
+                });
+        }else{
+            $('.ios-switch').removeClass('on');
+            $('.ios-switch').addClass('off');
+            $('#is_admin').val(0);
+        }
+    })
     </script>
 @endsection

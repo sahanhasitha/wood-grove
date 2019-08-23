@@ -23,6 +23,15 @@
     <!-- start: page -->
     <div class="row">
         <div class="col-md-10">
+            @if( Session::has( 'error' ))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Oops! </strong><em>{{ Session::get( 'error' ) }}</em> is alraedy in used.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            @endif
 <div class="card-header">
     <span>Fill all the fields to create new</span>
 </div>
