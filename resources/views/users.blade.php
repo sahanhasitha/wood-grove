@@ -8,31 +8,41 @@
 
         <!-- start: page -->
         <div class="row">
-            <section class="card">
+            <div class="col-md-12">
+                <div class="card-header">
+                    <span>All available Companies</span>
+                    <a href="{{ route('add-new-user') }}" class="btn btn-light text-primary float-right"><i class="fas fa-plus-square"></i> Create a User</a>
+
+                </div>
                 <div class="card-body">
-                    <div class="row">
-                        <table class="table table-striped">
-                            <thead>
+                    <table class="table table-light" id="users-table">
+                        <thead class="thead-light">
                             <tr>
                                 <th scope="col">System ID</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">EMail</th>
                                 <th scope="col">Registered Through</th>
-                                <th scope="col">Social Media ID</th>
+                                <th scope="col">Company</th>
                                 <th scope="col">Registered On</th>
+                                <th scope="col">Action</th>
                             </tr>
                             </thead>
                             <tbody>
 
                             @foreach ($users as $user)
-
                                 <tr>
                                     <td>{{ $user->id }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td>{{ $user->provider }}</td>
-                                    <td>{{ $user->provider_id }}</td>
+                                    <td>{{ $user->provider!=[]?$user->provider:'Email' }}</td>
+                                    <td>{{ $user->company['name'] }}</td>
                                     <td>{{ $user->created_at }}</td>
+                                    <td>
+                                        <a class="btn btn-light text-warning edit-user"
+                                            data-id="{{ $user->id }}"><i class="fas fa-edit"></i></a>
+                                        <a class="btn btn-light text-danger delete-user"
+                                            data-id="{{ $user->id }}"><i class="fas fa-trash"></i></a>
+                                    </td>
                                 </tr>
 
                             @endforeach
@@ -45,4 +55,159 @@
         </div>
         <!-- end: page -->
     </section>
+    {{--  edit modal  --}}
+    <div id="editUserModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Company details</h4>
+                </div>
+                <form action="{{ route('update-user') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="user_id" id="user_id">
+<div class="card-body">
+    <div class="form-group">
+        <label class="col-md-3 control-label" for="inputRounded">Name <small class="text-danger">*</small></label>
+        <div class="col-md-12">
+            <input type="text" value="{{ old('title') }}" id="name"
+                class="form-control input-rounded {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name">
+            @if ($errors->has('name'))
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $errors->first('name') }}</strong>
+            </span>
+            @endif
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label" for="inputRounded">Email <small class="text-danger">*</small></label>
+        <div class="col-md-12">
+            <input type="text" value="{{ old('email') }}" id="email"
+                class="form-control input-rounded {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email">
+            @if ($errors->has('email'))
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $errors->first('email') }}</strong>
+            </span>
+            @endif
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-3 control-label" for="inputRounded">Company <small class="text-danger">*</small></label>
+        <div class="col-md-12">
+            <select name="company_id" class="form-control" id="company_id">
+
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-12">
+            <div class="switch switch-primary float-right">
+                <div class="ios-switch off">
+                    <div class="on-background background-fill"></div>
+                    <div class="state-background background-fill"></div>
+                    <div class="handle"></div>
+                </div><input type="hidden" name="is_admin" id="is_admin" value="0">
+            </div>
+        </div>
+        <label class="col-md-2 control-label float-right" for="inputRounded">Admin User <small
+                class="text-danger">*</small></label>
+    </div>
+</div>
+<div class="card-footer">
+    <div class="col-md-12">
+        <button type="submit" class="btn btn-success float-right"><i class="fas fa-save"></i> Update
+            User</a>
+    </div>
+</div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endsection
+@section('js')
+    <script>
+
+    $(document).ready(function () {
+    $('#users-table').DataTable();
+    });
+
+    $('.delete-user').on('click', function(){
+    var user_id = $(this).attr("data-id");
+    $.confirm({
+        theme: 'supervan',
+        title: 'Are you sure?',
+        content: 'This will permenantly delete the User',
+    buttons: {
+        Delete: function () {
+            window.location.href = '{{ url("delete-user") }}/' + user_id;
+        },
+        heyThere: {
+            text: 'Cancel', // With spaces and symbols
+            action: function () {
+                // $.alert('You canceld the action');
+            }
+        }
+    }
+});
+})
+
+$('.edit-user').on('click', function(){
+
+var array = {
+id: $(this).attr("data-id")
+
+};
+$.ajax({
+           url: "{{ action('UserController@getUser') }}",
+           headers: {
+               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+            type: 'GET',
+            dataType: 'json',
+            data: array,
+                success: function (response) {
+                    $('#user_id').val(response.users.id);
+                    $('#name').val(response.users.name);
+                    $('#email').val(response.users.email);
+                    if(response.users.is_admin==1){
+                        $('.ios-switch').removeClass('off');
+                        $('.ios-switch').addClass('on');
+                        $('#is_admin').val(1);
+                    }else{
+                        $('.ios-switch').removeClass('on');
+                        $('.ios-switch').addClass('off');
+                        $('#is_admin').val(0);
+                    }
+                    var output = [];
+                    $.each(response.companies, function(key, value)
+                    {
+                    output.push('<option value="'+ value.id +'">'+ value.name +'</option>');
+                    });
+
+                    $('#company_id').html(output.join(''));
+                    $("#company_id").val(response.users.company_id).change();
+                      $("#editUserModal").modal('show');
+       }
+    });
+
+})
+
+if("{{ session()->has('edited') }}"){
+success("Edited");
+}else if("{{ session()->has('deleted') }}"){
+    success("Deleted");
+}
+
+function success(msg){
+    $.toast({
+    heading: 'Success',
+    position: 'bottom-right',
+    text: 'User is successfully '+msg+'.',
+    showHideTransition: 'slide',
+    icon: 'success'
+})
+}
+    </script>
 @endsection

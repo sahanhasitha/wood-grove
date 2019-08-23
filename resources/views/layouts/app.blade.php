@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="fixed sidebar-left-collapsed">
+<html class="fixed sidebar-left-open">
 <head>
 
     <!-- Basic -->
@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="{{asset('vendor/jquery-ui/jquery-ui.theme.css')}}" />
     <link rel="stylesheet" href="{{asset('vendor/bootstrap-multiselect/css/bootstrap-multiselect.css')}}" />
     <link rel="stylesheet" href="{{asset('vendor/morris/morris.css')}}" />
-    
+
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{asset('css/theme.css')}}" />
 
@@ -40,6 +40,28 @@
 
     <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="{{asset('css/custom.css')}}">
+
+    {{--  datatable cdn  --}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    {{--  jquery confirm  --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    {{--  jquery toast  --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.css">
+    {{--  dropify --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css">
+     {{--  tagsinput --}}
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
+
+     <style>
+     .tag {
+     background-color: red !important;
+     }
+     </style>
+
+    @yield('css')
+
+
+
 
     <!-- Head Libs -->
     <script src="{{asset('vendor/modernizr/modernizr.js')}}"></script>
@@ -348,7 +370,6 @@
         </div>
     </aside>
 </section>
-
 <script src="{{asset('vendor/jquery/jquery.js')}}"></script>
 <script src="{{asset('vendor/jquery-browser-mobile/jquery.browser.mobile.js')}}"></script>
 <script src="{{asset('vendor/popper/umd/popper.min.js')}}"></script>
@@ -397,5 +418,21 @@
 
 <!-- Examples -->
 <script src="{{asset('js/examples/examples.dashboard.js')}}"></script>
+
+{{--  datatable cdn  --}}
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+{{--  jqury confirm  --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+{{--  jqury toast  --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
+{{--  dropify  --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
+{{--  tagsinput  --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+
+
+@yield('js')
+
 </body>
 </html>
