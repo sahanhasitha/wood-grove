@@ -55,9 +55,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-5 control-label">Start Date <small class="text-danger">*</small><small> (dd/mm/yyyy)</small></label>
+                        <label class="col-md-5 control-label">Start Date <small class="text-danger">*</small><small> (yyyy-mm-dd)</small></label>
                         <div class="col-md-12">
-                            <input type="text" value="{{ $event!=[]?$event->start_date: old('start_date') }}"
+                            <input type="text" style="background-color: #fff!important" readonly value="{{ $event!=[]?$event->start_date: old('start_date') }}" data-date-format="yyyy-mm-dd"
                                 id="start_date"
                                 class="form-control input-rounded {{ $errors->has('start_date') ? ' is-invalid' : '' }}"
                                 name="start_date">
@@ -69,9 +69,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-5 control-label">End Date <small class="text-danger">*</small><small> (dd/mm/yyyy)</small></label>
+                        <label class="col-md-5 control-label">End Date <small class="text-danger">*</small><small> (yyyy-mm-dd)</small></label>
                         <div class="col-md-12">
-                            <input type="text" value="{{ $event!=[]?$event->end_date: old('end_date') }}"
+                            <input type="text" style="background-color: #fff!important" readonly value="{{ $event!=[]?$event->end_date: old('end_date') }}"
                                 id="end_date"
                                 class="form-control input-rounded {{ $errors->has('end_date') ? ' is-invalid' : '' }}"
                                 name="end_date">
@@ -126,6 +126,13 @@
 @section('js')
 <script>
     $(document).ready(function () {
+
+        $('#start_date').datepicker({
+        dateFormat: 'yy-mm-dd'
+        });
+        $('#end_date').datepicker({
+        dateFormat: 'yy-mm-dd'
+        });
 
         //dropify image tool
         $('.dropify').dropify();

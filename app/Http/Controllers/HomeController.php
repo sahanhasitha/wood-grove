@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use domain\Facades\CompanyFacade;
+use domain\Facades\EventFacade;
+use domain\Facades\ReservationFacade;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,7 +27,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $response['events'] = EventFacade::all();
+        $response['companies'] = CompanyFacade::allCompany();
+        $response['reservations'] = ReservationFacade::all();
+        return view('home')->with($response);
     }
 
     public function users(){
