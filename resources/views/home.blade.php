@@ -53,14 +53,13 @@
                                     </div>
                                     <div class="widget-summary-col">
                                         <div class="summary">
-                                            <h4 class="title">Support Questions</h4>
+                                            <h4 class="title">Products</h4>
                                             <div class="info">
-                                                <strong class="amount">1281</strong>
-                                                <span class="text-primary">(14 unread)</span>
+                                                <strong class="amount">{{\App\Product::all()->count()}}</strong>
                                             </div>
                                         </div>
                                         <div class="summary-footer">
-                                            <a class="text-muted text-uppercase" href="#">(view all)</a>
+                                            <a class="text-muted text-uppercase" href="{{url('products')}}">(view all)</a>
                                         </div>
                                     </div>
                                 </div>
@@ -78,13 +77,13 @@
                                     </div>
                                     <div class="widget-summary-col">
                                         <div class="summary">
-                                            <h4 class="title">Total Profit</h4>
+                                            <h4 class="title">Services</h4>
                                             <div class="info">
-                                                <strong class="amount">$ 14,890.30</strong>
+                                                <strong class="amount">{{\App\Service::all()->count()}}</strong>
                                             </div>
                                         </div>
                                         <div class="summary-footer">
-                                            <a class="text-muted text-uppercase" href="#">(withdraw)</a>
+                                            <a class="text-muted text-uppercase" href="{{url('services')}}">(view all)</a>
                                         </div>
                                     </div>
                                 </div>
@@ -104,13 +103,13 @@
                                     </div>
                                     <div class="widget-summary-col">
                                         <div class="summary">
-                                            <h4 class="title">Today's Orders</h4>
+                                            <h4 class="title">Reservations</h4>
                                             <div class="info">
-                                                <strong class="amount">38</strong>
+                                                <strong class="amount">{{\App\Reservation::all()->count()}}</strong>
                                             </div>
                                         </div>
                                         <div class="summary-footer">
-                                            <a class="text-muted text-uppercase" href="#">(statement)</a>
+                                            <a class="text-muted text-uppercase" href="{{url('reservations')}}">(view all)</a>
                                         </div>
                                     </div>
                                 </div>
@@ -128,13 +127,13 @@
                                     </div>
                                     <div class="widget-summary-col">
                                         <div class="summary">
-                                            <h4 class="title">Today's Visitors</h4>
+                                            <h4 class="title">Events</h4>
                                             <div class="info">
-                                                <strong class="amount">3765</strong>
+                                                <strong class="amount">{{\App\Event::all()->count()}}</strong>
                                             </div>
                                         </div>
                                         <div class="summary-footer">
-                                            <a class="text-muted text-uppercase" href="#">(report)</a>
+                                            <a class="text-muted text-uppercase" href="{{url('events')}}">(view all)</a>
                                         </div>
                                     </div>
                                 </div>
