@@ -20,6 +20,7 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
+                    @if(Auth::user()->is_admin==1)
                     <li class="nav-parent">
                         <a class="nav-link" href="#">
                             <i class="fas fa-columns" aria-hidden="true"></i>
@@ -50,8 +51,8 @@
                                  @endif
                             </li>
                         </ul>
-                    </li>
-                   @if(Auth::user()->is_admin==1)
+                   </li>
+
                    <li>
                        <a class="nav-link" href="{{ route('users') }}">
                            <i class="fas fa-users" aria-hidden="true"></i>
