@@ -48,7 +48,7 @@
                                 <div class="widget-summary">
                                     <div class="widget-summary-col widget-summary-col-icon">
                                         <div class="summary-icon bg-primary">
-                                            <i class="fas fa-life-ring"></i>
+                                            <i class="fas fa-sitemap"></i>
                                         </div>
                                     </div>
                                     <div class="widget-summary-col">
@@ -72,7 +72,7 @@
                                 <div class="widget-summary">
                                     <div class="widget-summary-col widget-summary-col-icon">
                                         <div class="summary-icon bg-secondary">
-                                            <i class="fas fa-dollar-sign"></i>
+                                            <i class="fab fa-buffer"></i>
                                         </div>
                                     </div>
                                     <div class="widget-summary-col">
@@ -98,7 +98,7 @@
                                 <div class="widget-summary">
                                     <div class="widget-summary-col widget-summary-col-icon">
                                         <div class="summary-icon bg-tertiary">
-                                            <i class="fas fa-shopping-cart"></i>
+                                            <i class="fas fa-book"></i>
                                         </div>
                                     </div>
                                     <div class="widget-summary-col">
@@ -122,7 +122,7 @@
                                 <div class="widget-summary">
                                     <div class="widget-summary-col widget-summary-col-icon">
                                         <div class="summary-icon bg-quaternary">
-                                            <i class="fas fa-user"></i>
+                                            <i class="fas fa-calendar-week"></i>
                                         </div>
                                     </div>
                                     <div class="widget-summary-col">
