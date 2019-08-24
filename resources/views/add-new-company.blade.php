@@ -13,7 +13,7 @@
                     </a>
                 </li>
                 <li><span>Company Management</span></li>
-                <li><a href="{{ route('companies') }}"><span>Cpmpanies</span></a></li>
+                <li><a href="{{ route('companies') }}"><span>Companies</span></a></li>
                 <li><span>Create New Company</span></li>
             </ol>
 

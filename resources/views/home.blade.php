@@ -8,7 +8,7 @@
             <div class="right-wrapper text-right">
                 <ol class="breadcrumbs">
                     <li>
-                        <a href="index.html">
+                        <a href="/">
                             <i class="fas fa-home"></i>
                         </a>
                     </li>
