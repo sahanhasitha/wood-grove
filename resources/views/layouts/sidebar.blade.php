@@ -51,12 +51,14 @@
                             </li>
                         </ul>
                     </li>
+                   @if(Auth::user()->is_admin==1)
                    <li>
                        <a class="nav-link" href="{{ route('users') }}">
                            <i class="fas fa-users" aria-hidden="true"></i>
                            <span>Users </span>
                        </a>
                    </li>
+                   @endif
                    <li>
                        <a class="nav-link" href="{{ route('products') }}">
                            <i class="fas fa-sitemap" aria-hidden="true"></i>
