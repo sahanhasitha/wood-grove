@@ -35,13 +35,14 @@
 <div class="card-header">
     <span>Fill all the fields to create new</span>
 </div>
-<form action="{{ route('store-user-details') }}" method="POST">
+<form action="{{ route($user!=[]?'update-user':'store-user-details') }}" method="POST">
 @csrf
+<input type="hidden" name="user_id" value="{{ $user!=[]?$user->id:'' }}">
 <div class="card-body">
     <div class="form-group">
         <label class="col-md-3 control-label" for="inputRounded">Name <small class="text-danger">*</small></label>
         <div class="col-md-12">
-            <input type="text" value="{{ old('title') }}" class="form-control input-rounded {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name">
+            <input type="text" value="{{ $user!=[]?$user->name:old('name') }}" class="form-control input-rounded {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name">
             @if ($errors->has('name'))
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $errors->first('name') }}</strong>
@@ -52,7 +53,7 @@
     <div class="form-group">
         <label class="col-md-3 control-label" for="inputRounded">Email <small class="text-danger">*</small></label>
         <div class="col-md-12">
-            <input type="text" value="{{ old('email') }}"
+            <input type="text" value="{{ $user!=[]?$user->email:old('email') }}"
                 class="form-control input-rounded {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email">
             @if ($errors->has('email'))
             <span class="invalid-feedback" role="alert">
@@ -61,10 +62,10 @@
             @endif
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group" style="display: {{ $user!=[]?'none':'' }};">
         <label class="col-md-3 control-label" for="inputRounded">Password <small class="text-danger">*</small></label>
         <div class="col-md-12">
-            <input type="password" value="{{ old('password') }}" id="password"
+            <input type="password" value="{{ $user!=[]?$user->password:old('password') }}" id="password"
                 class="form-control input-rounded {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password">
             @if ($errors->has('password'))
             <span class="invalid-feedback" role="alert">
@@ -73,10 +74,10 @@
             @endif
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group" style="display: {{ $user!=[]?'none':'' }};">
         <label class="col-md-3 control-label" for="inputRounded">Confirm Password <small class="text-danger">*</small></label>
         <div class="col-md-12">
-            <input type="password" value="" name="conf_password" id="conf_password"
+            <input type="password" value="{{ $user!=[]?$user->password:old('password') }}" name="conf_password" id="conf_password"
                 class="form-control input-rounded {{ $errors->has('password') ? ' is-invalid' : '' }} conf_password">
                 <small class="text-success d-none" id="pass-success">Password is match</small>
                 <small class="text-danger d-none" id="pass-danger">Password is not match</small>
@@ -92,7 +93,7 @@
         <div class="col-md-12">
             <select name="company_id" class="form-control">
                 @foreach ($companies as $company)
-                <option value="{{ $company->id }}">{{ $company->name }}</option>
+                <option {{ $user!=[]?$user->company_id==$company->id?'selected':'':'' }} value="{{ $company->id }}">{{ $company->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -100,11 +101,11 @@
     <div class="form-group">
         <div class="col-md-12">
             <div class="switch switch-primary float-right">
-                <div class="ios-switch off">
+                <div class="ios-switch {{ $user!=[]?$user->is_admin==1?'on':'off':'off' }}">
                     <div class="on-background background-fill"></div>
                     <div class="state-background background-fill"></div>
                     <div class="handle"></div>
-                </div><input type="hidden" name="is_admin" id="is_admin" value="0">
+                </div><input type="hidden" name="is_admin" id="is_admin" value="{{ $user!=[]?$user->is_admin=='1'?'1':'0':'0' }}">
             </div>
         </div>
         <label class="col-md-2 control-label float-right" for="inputRounded">Admin User</label>
@@ -112,7 +113,7 @@
 </div>
 <div class="card-footer">
     <div class="col-md-12">
-        <button type="submit" class="btn btn-success float-right" disabled id="submit-btn"><i class="fas fa-save"></i> Create New User</a>
+        <button type="submit" class="btn btn-success float-right" {{ $user!=[]?'':'disabled' }} id="submit-btn"><i class="fas fa-save"></i> Create New User</a>
     </div>
 </div>
 </form>

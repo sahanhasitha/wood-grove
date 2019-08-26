@@ -24,9 +24,13 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function addNewType()
+    public function addNewType($id = null)
     {
-        return view('add-new-type');
+        $response['type'] = [];
+        if ($id != []) {
+            $response['type'] = CompanyFacade::getType($id);
+        }
+        return view('add-new-type')->with($response);
     }
     /**
      * Save type details.
@@ -63,7 +67,7 @@ class CompanyController extends Controller
      * @param Request
      * @return response
      */
-    public function updateType(Request $request)
+    public function updateType(TypesRequest $request)
     {
         CompanyFacade::updateType($request->all());
         return redirect(route('types'))->with('success', 'Type is successfully Updated');
@@ -83,8 +87,13 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function addNewCompany()
+    public function addNewCompany($id = null)
     {
+        $response['company'] = [];
+        if ($id != []) {
+            $response['company'] = CompanyFacade::getCompany($id);
+            $response['tags'] = CompanyFacade::getTags($id);
+        }
         $response['types'] = CompanyFacade::allTypes();
         $response['companies'] = CompanyFacade::allCompany();
         return view('add-new-company')->with($response);
@@ -126,7 +135,7 @@ class CompanyController extends Controller
      * @param Request
      * @return response
      */
-    public function updateCompany(Request $request)
+    public function updateCompany(CompanyRequest $request)
     {
         CompanyFacade::updateCompany($request->all());
         return redirect(route('companies'))->with('success', 'Company is successfully Updated');

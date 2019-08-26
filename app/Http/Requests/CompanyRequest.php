@@ -26,8 +26,9 @@ class CompanyRequest extends FormRequest
         return [
             "name" => "required",
             "address" => "required",
-            "phone" => "required|min:10|numeric",
+            "phone" => "required|min:10|max:15",
             "description" => "required",
+            "type_id" => "required",
             "website" => 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
         ];
     }

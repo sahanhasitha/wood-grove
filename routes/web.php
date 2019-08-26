@@ -24,14 +24,14 @@ Route::get('login/{provider}/callback','Auth\SocialController@callback');
 Route::post('social-register','Auth\SocialController@doRegister')->name('social-register');
 
 Route::get('types', 'CompanyController@types')->name('types');
-Route::get('add-new-type','CompanyController@addNewType')->name('add-new-type');
+Route::get('add-new-type/{id?}','CompanyController@addNewType')->name('add-new-type');
 Route::post('store-type-details','CompanyController@storeTypeDetails')->name('store-type-details');
 Route::get('delete-type/{id}', 'CompanyController@deleteType')->name('delete-type');
 Route::get('get-type', 'CompanyController@getType')->name('get-type');
 Route::post('update-type','CompanyController@updateType')->name('update-type');
 
 Route::get('companies', 'CompanyController@companies')->name('companies');
-Route::get('add-new-company', 'CompanyController@addNewCompany')->name('add-new-company');
+Route::get('add-new-company/{id?}', 'CompanyController@addNewCompany')->name('add-new-company');
 Route::post('store-company-details', 'CompanyController@storeCompanyDetails')->name('store-company-details');
 Route::get('delete-company/{id}', 'CompanyController@deleteCompany')->name('delete-company');
 Route::get('get-company', 'CompanyController@getCompany')->name('get-company');
@@ -39,7 +39,7 @@ Route::post('update-company', 'CompanyController@updateCompany')->name('update-c
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('users', 'UserController@users')->name('users');
-    Route::get('add-new-user', 'UserController@addNewUser')->name('add-new-user');
+    Route::get('add-new-user/{id?}', 'UserController@addNewUser')->name('add-new-user');
     Route::post('store-user-details', 'UserController@storeUserDetails')->name('store-user-details');
     Route::get('delete-user/{id}', 'UserController@deleteUser')->name('delete-user');
     Route::get('get-user', 'UserController@getUser')->name('get-user');

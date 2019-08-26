@@ -35,9 +35,9 @@
                             <th>Name</th>
                             <th>Description</th>
                             <th>Start Date</th>
-                            <th>Start Date</th>
+                            <th>End Date</th>
                             <th>Company</th>
-                            <th>Action</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -78,7 +78,12 @@
 @section('js')
 <script>
     $(document).ready(function () {
-        $('#reservation-table').DataTable();
+        $('#reservation-table').DataTable({
+             'columnDefs': [ {
+             'targets': [6], /* column index */
+             'orderable': false, /* true or false */
+             }]
+        });
     });
 
 $('.delete-reservation').on('click', function(){

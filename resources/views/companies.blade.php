@@ -35,7 +35,7 @@
                             <th>Name</th>
                             <th>Address</th>
                             <th>Phone</th>
-                            <th>Action</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -185,7 +185,17 @@
 @section('js')
 <script>
     $(document).ready(function () {
-        $('#companies-table').DataTable();
+        @if (count($errors) > 0)
+
+        $('#editCompanyModal').modal('show');
+        @endif
+        $('#companies-table').DataTable({
+              'columnDefs': [ {
+              'targets': [4], /* column index */
+              'orderable': false, /* true or false */
+
+              }]
+        });
     });
 
 $('.delete-company').on('click', function(){
@@ -209,44 +219,9 @@ $('.delete-company').on('click', function(){
 })
 
 $('.edit-company').on('click', function(){
+    var company_id = $(this).attr("data-id");
 
-var array = {
-id: $(this).attr("data-id")
-
-};
-$.ajax({
-           url: "{{ action('CompanyController@getCompany') }}",
-           headers: {
-               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-            type: 'GET',
-            dataType: 'json',
-            data: array,
-                success: function (response) {
-                    $('#company_id').val(response.companies.id);
-                    $('#name').val(response.companies.name);
-                    $('#address').val(response.companies.address);
-                    $('#phone').val(response.companies.phone);
-                    $('#website').val(response.companies.website);
-                    $('#description').text(response.companies.description);
-                    var output = [];
-
-                    $.each(response.allTypes, function(key, value)
-                    {
-                    output.push('<option value="'+ value.id +'">'+ value.title +'</option>');
-                    });
-                    $('#tags').tagsinput('removeAll');
-                    $.each(response.tags, function(key, value)
-                    {
-                    $('#tags').tagsinput('add', value.tags, {preventPost: true});
-
-                    });
-
-                    $('#type_id').html(output.join(''));
-                    $("#type_id").val(response.companies.type_id).change();
-                      $("#editCompanyModal").modal('show');
-       }
-    });
+    window.location.href = '{{ url("add-new-company") }}/' + company_id;
 
 })
 
@@ -258,7 +233,7 @@ function success(){
     $.toast({
     heading: 'Success',
     position: 'bottom-right',
-    text: 'Your Company is successfully Deleted.',
+    text: 'Your Company is successfully Updated.',
     showHideTransition: 'slide',
     icon: 'success'
 })

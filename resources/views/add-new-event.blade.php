@@ -101,8 +101,7 @@
                             <textarea id="description"
                                 class="form-control input-rounded {{ $errors->has('description') ? ' is-invalid' : '' }}"
                                 rows="5" name="description"
-                                placeholder="Type description
-                                here">{{ $event!=[]?$event->description: old('decription') }}</textarea>
+                                placeholder="Type description here">{{ $event!=[]?$event->description: old('decription') }}</textarea>
                             @if ($errors->has('description'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('description') }}</strong>
