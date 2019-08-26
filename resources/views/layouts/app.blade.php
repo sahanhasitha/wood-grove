@@ -60,6 +60,10 @@
      .tag {
      background-color: red !important;
      }
+     .active{
+             color: #1b1a1a!important;
+             background-color: #fff;
+     }
      </style>
 
     @yield('css')
@@ -270,6 +274,15 @@ $(".image-upload").change(function() {
           $('#imgUpload').attr('disabled', true);
       }
     });
+$('input').on('keyup', function(){
+
+    $("input").each(function() {
+    var element = $(this);
+    if (element.val() != "") {
+        $(this).removeClass('is-invalid');
+    }
+    });
+})
 
 </script>
 

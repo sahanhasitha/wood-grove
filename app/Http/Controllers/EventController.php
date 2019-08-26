@@ -80,7 +80,7 @@ class EventController extends Controller
      * @param Request
      * @return response
      */
-    public function updateEvent(Request $request)
+    public function updateEvent(EventRequest $request)
     {
         EventFacade::updateEvent($request->all());
         return redirect()->route('add-new-event-image', $request->event_id);

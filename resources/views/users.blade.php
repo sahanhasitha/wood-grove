@@ -24,7 +24,7 @@
                                 <th scope="col">Registered Through</th>
                                 <th scope="col">Company</th>
                                 <th scope="col">Registered On</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Actions</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -133,8 +133,15 @@
         $('#editUserModal').modal('show');
         @endif
 
-    $('#users-table').DataTable();
+    $('#users-table').DataTable({
+            'columnDefs': [ {
+            'targets': [6], /* column index */
+            'orderable': false, /* true or false */
+
+            }]
     });
+    });
+
 
     $('.delete-user').on('click', function(){
     var user_id = $(this).attr("data-id");
@@ -157,44 +164,8 @@
 })
 
 $('.edit-user').on('click', function(){
-
-var array = {
-id: $(this).attr("data-id")
-
-};
-$.ajax({
-           url: "{{ action('UserController@getUser') }}",
-           headers: {
-               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-            type: 'GET',
-            dataType: 'json',
-            data: array,
-                success: function (response) {
-                    $('#user_id').val(response.users.id);
-                    $('#name').val(response.users.name);
-                    $('#email').val(response.users.email);
-                    if(response.users.is_admin==1){
-                        $('.ios-switch').removeClass('off');
-                        $('.ios-switch').addClass('on');
-                        $('#is_admin').val(1);
-                    }else{
-                        $('.ios-switch').removeClass('on');
-                        $('.ios-switch').addClass('off');
-                        $('#is_admin').val(0);
-                    }
-                    var output = [];
-                    $.each(response.companies, function(key, value)
-                    {
-                    output.push('<option value="'+ value.id +'">'+ value.name +'</option>');
-                    });
-
-                    $('#company_id').html(output.join(''));
-                    $("#company_id").val(response.users.company_id).change();
-                      $("#editUserModal").modal('show');
-       }
-    });
-
+var user_id = $(this).attr("data-id");
+window.location.href = '{{ url("add-new-user") }}/' + user_id;
 })
 
 if("{{ session()->has('edited') }}"){
@@ -237,4 +208,19 @@ function success(msg){
         }
     })
     </script>
+@endsection
+@section('css')
+    <style>
+    #users-table {
+    table-layout: fixed;
+    width: 100% !important;
+    }
+    #users-table td,
+    #users-table th{
+    width: auto !important;
+    white-space: normal;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    }
+    </style>
 @endsection

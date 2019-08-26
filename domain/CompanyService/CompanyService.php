@@ -32,7 +32,7 @@ class CompanyService
     }
     public function allTypes()
     {
-        return $this->types->all();
+        return $this->types->all()->sortBy('title');
     }
     public function allTagsOnCompany($id)
     {
@@ -62,7 +62,7 @@ class CompanyService
     }
     public function destroyType($id)
     {
-        $types = $this->get($id);
+        $types = $this->getType($id);
         $types->delete();
         return $this->types->all();
     }

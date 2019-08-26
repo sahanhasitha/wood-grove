@@ -34,7 +34,7 @@
                             <th>#</th>
                             <th>Title</th>
                             <th>Description</th>
-                            <th>Action</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -122,7 +122,16 @@
 @section('js')
 <script>
     $(document).ready(function () {
-        $('#types-table').DataTable();
+         @if (count($errors) > 0)
+         $('#editModal').modal('show');
+         @endif
+        $('#types-table').DataTable({
+            'columnDefs': [ {
+            'targets': [3], /* column index */
+            'orderable': false, /* true or false */
+
+            }]
+        });
     });
 
 $('.delete-types').on('click', function(){
@@ -147,25 +156,10 @@ $('.delete-types').on('click', function(){
 
 $('.edit-types').on('click', function(){
 
-var array = {
-id: $(this).attr("data-id")
 
-};
-$.ajax({
-           url: "{{ action('CompanyController@getType') }}",
-           headers: {
-               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-            type: 'GET',
-            dataType: 'json',
-            data: array,
-                success: function (response) {
-                    $('#type_id').val(response.types.id);
-                    $('#title').val(response.types.title);
-                    $('#description').text(response.types.description);
-                      $("#editModal").modal('show');
-       }
-    });
+var type_id = $(this).attr("data-id");
+
+window.location.href = '{{ url("add-new-type") }}/' + type_id;
 
 })
 

@@ -112,7 +112,7 @@
                             <th>Description</th>
                             <th>Price</th>
                             <th>Company</th>
-                            <th>Action</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -146,14 +146,20 @@
     </div>
     <!-- end: page -->
 </section>
-{{--  end edit modal  --}}
 
 @endsection
 @section('js')
 <script>
     $(document).ready(function () {
-        $('#product-table').DataTable();
+        $('#product-table').DataTable({
+            'columnDefs': [ {
+            'targets': [5], /* column index */
+            'orderable': false, /* true or false */
+
+            }]
+        });
     });
+
 
 $('.delete-product').on('click', function(){
     var product_id = $(this).attr("data-id");

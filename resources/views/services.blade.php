@@ -36,7 +36,7 @@
                             <th>Description</th>
                             <th>Price</th>
                             <th>Company</th>
-                            <th>Action</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -151,7 +151,12 @@
 @section('js')
 <script>
     $(document).ready(function () {
-        $('#product-table').DataTable();
+        $('#product-table').DataTable({
+             'columnDefs': [ {
+             'targets': [5], /* column index */
+             'orderable': false, /* true or false */
+             }]
+        });
     });
 
 $('.delete-service').on('click', function(){

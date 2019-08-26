@@ -39,7 +39,7 @@
                             <th>End Date</th>
                             <th>Price</th>
                             <th>Company</th>
-                            <th>Action</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -81,7 +81,12 @@
 @section('js')
 <script>
     $(document).ready(function () {
-        $('#event-table').DataTable();
+        $('#event-table').DataTable({
+             'columnDefs': [ {
+             'targets': [7], /* column index */
+             'orderable': false, /* true or false */
+             }]
+        });
     });
 
 $('.delete-event').on('click', function(){

@@ -7,6 +7,7 @@ use App\Http\Requests\UserUpdateRequest;
 use domain\Facades\CompanyFacade;
 use domain\Facades\UserFacade;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Encryption\DecryptException;
 
 class UserController extends Controller
 {
@@ -25,8 +26,12 @@ class UserController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function addNewUser()
+    public function addNewUser($id = null)
     {
+        $response['user'] = [];
+        if ($id != []) {
+            $response['user'] = UserFacade::get($id);
+        }
         $response['companies'] = CompanyFacade::allCompany();
         return view('add-new-user')->with($response);
     }
