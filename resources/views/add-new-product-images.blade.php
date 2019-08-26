@@ -70,7 +70,7 @@
                 <div class="modal-body">
                     <!-- image upload mode-->
                     <label for="">Select Image</label>
-                    <input type="file" accept="image/*" class="form-control dropify" data-show-remove="true"
+                    <input type="file" accept="image/*" class="form-control dropify image-upload" data-show-remove="true"
                         name="image" id="category_image" aria-describedby="helpId" placeholder="">
                     <input type="text" class="form-control" name="product_id" id="" aria-describedby="helpId"
                         placeholder="" value="{{$product != []?$product->id:''}}" hidden="">
@@ -84,7 +84,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" id="imgUpload">Upload Image</button>
+                    <button type="submit" class="btn btn-primary" disabled id="imgUpload">Upload Image</button>
                 </div>
             </div>
         </div>
@@ -113,11 +113,6 @@ $('.text').on('click', function(){
     //end image delete confirmation
 })
 
-    $(document).ready(function () {
-
-        //dropify image tool
-        $('.dropify').dropify();
-    });
     if ("{{ session()->has('success') }}") {
         success();
     }

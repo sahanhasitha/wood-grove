@@ -69,12 +69,17 @@
                     <div class="form-group mb-3">
                         <label>Password Confirmation</label>
                         <div class="input-group">
-                            <input id="password-confirm" type="password" class="form-control form-control-lg" name="password_confirmation" required >
+                            <input id="password-confirm" type="password" class="form-control form-control-lg @error('password') is-invalid @enderror" name="password_confirmation" required >
                             <span class="input-group-append">
 										<span class="input-group-text">
 											<i class="fas fa-lock"></i>
 										</span>
-									</span>
+                                    </span>
+                                     @error('password')
+                                     <span class="invalid-feedback" role="alert">
+                                         <strong>{{ $message }}</strong>
+                                     </span>
+                                     @enderror
                         </div>
                     </div>
 

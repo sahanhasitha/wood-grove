@@ -55,7 +55,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Price <small class="text-danger">*</small></label>
+                        <label class="col-md-3 control-label">Price ($)<small class="text-danger">*</small></label>
                         <div class="col-md-12">
                             <input type="text" value="{{ $service!=[]?$service->price: old('price') }}" id="price"
                                 class="form-control input-rounded {{ $errors->has('price') ? ' is-invalid' : '' }}"
