@@ -49,13 +49,13 @@
         </div>
         <div class="form-group">
 <label class="col-md-3 control-label">Company Type <small class="text-danger">*</small></label>
-
 <div class="col-md-12">
     <select class="form-control input-rounded col-md-12 {{ $errors->has('type_id') ? ' is-invalid' : '' }}" name="type_id">
                 <option selected disabled>--Select Company Type--</option>
 
             @foreach ($types as $type)
-                <option {{ $company->type_id==$type->id?'selected':'' }} value="{{ $type->id }}">{{ $type->title }}</option>
+                <option {{ $company!=[]?$company->type_id==$type->id?'selected':'':'' }} value="{{ $type->id }}">
+                    {{ $type->title }}</option>
             @endforeach
     </select>
     @if ($errors->has('type_id'))
@@ -114,9 +114,11 @@
             <label class="col-md-3 control-label">Tags </label>
             <div class="col-md-12">
                 <input type="text" data-role="tagsinput" class="form-control" id="tags" name="tags" value="
+                @if($tags!=[])
                 @foreach ($tags as $tag)
                     {{ $tag->tags.',' }}
                 @endforeach
+                @endif
                 ">
             </div>
         </div>

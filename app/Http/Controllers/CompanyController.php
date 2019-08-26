@@ -90,6 +90,7 @@ class CompanyController extends Controller
     public function addNewCompany($id = null)
     {
         $response['company'] = [];
+        $response['tags'] = [];
         if ($id != []) {
             $response['company'] = CompanyFacade::getCompany($id);
             $response['tags'] = CompanyFacade::getTags($id);
