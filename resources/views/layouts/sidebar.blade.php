@@ -50,13 +50,15 @@
                                  @endif
                             </li>
                         </ul>
-                    </li>
+                   </li>
+
                    <li>
                        <a class="nav-link {{ Request::is('users') ? 'active' : '' }}" href="{{ route('users') }}">
                            <i class="fas fa-users" aria-hidden="true"></i>
                            <span>Users </span>
                        </a>
                    </li>
+                   @endif
                    <li>
                        <a class="nav-link {{ Request::is('products') ? 'active' : '' }}" href="{{ route('products') }}">
                            <i class="fas fa-sitemap" aria-hidden="true"></i>

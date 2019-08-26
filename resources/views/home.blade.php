@@ -8,7 +8,7 @@
             <div class="right-wrapper text-right">
                 <ol class="breadcrumbs">
                     <li>
-                        <a href="index.html">
+                        <a href="/">
                             <i class="fas fa-home"></i>
                         </a>
                     </li>
@@ -22,7 +22,7 @@
 
         <!-- start: page -->
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <div class="alert alert-danger alert-dismissible fade show d-none warning-alert" role="alert">
                     <strong>Something wrong!</strong> Your activity is not saving due to incorrect data insertion. check again!
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -37,6 +37,108 @@
                     </div>
                     <div class="card-body">
                         <div id='calendar'></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="row mb-3">
+                    <div class="col-xl-6">
+                        <section class="card card-featured-left card-featured-primary mb-3">
+                            <div class="card-body">
+                                <div class="widget-summary">
+                                    <div class="widget-summary-col widget-summary-col-icon">
+                                        <div class="summary-icon bg-primary">
+                                            <i class="fas fa-sitemap"></i>
+                                        </div>
+                                    </div>
+                                    <div class="widget-summary-col">
+                                        <div class="summary">
+                                            <h4 class="title">Products</h4>
+                                            <div class="info">
+                                                <strong class="amount">{{\App\Product::all()->count()}}</strong>
+                                            </div>
+                                        </div>
+                                        <div class="summary-footer">
+                                            <a class="text-muted text-uppercase" href="{{url('products')}}">(view all)</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-xl-6">
+                        <section class="card card-featured-left card-featured-secondary">
+                            <div class="card-body">
+                                <div class="widget-summary">
+                                    <div class="widget-summary-col widget-summary-col-icon">
+                                        <div class="summary-icon bg-secondary">
+                                            <i class="fab fa-buffer"></i>
+                                        </div>
+                                    </div>
+                                    <div class="widget-summary-col">
+                                        <div class="summary">
+                                            <h4 class="title">Services</h4>
+                                            <div class="info">
+                                                <strong class="amount">{{\App\Service::all()->count()}}</strong>
+                                            </div>
+                                        </div>
+                                        <div class="summary-footer">
+                                            <a class="text-muted text-uppercase" href="{{url('services')}}">(view all)</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6">
+                        <section class="card card-featured-left card-featured-tertiary mb-3">
+                            <div class="card-body">
+                                <div class="widget-summary">
+                                    <div class="widget-summary-col widget-summary-col-icon">
+                                        <div class="summary-icon bg-tertiary">
+                                            <i class="fas fa-book"></i>
+                                        </div>
+                                    </div>
+                                    <div class="widget-summary-col">
+                                        <div class="summary">
+                                            <h4 class="title">Reservations</h4>
+                                            <div class="info">
+                                                <strong class="amount">{{\App\Reservation::all()->count()}}</strong>
+                                            </div>
+                                        </div>
+                                        <div class="summary-footer">
+                                            <a class="text-muted text-uppercase" href="{{url('reservations')}}">(view all)</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-xl-6">
+                        <section class="card card-featured-left card-featured-quaternary">
+                            <div class="card-body">
+                                <div class="widget-summary">
+                                    <div class="widget-summary-col widget-summary-col-icon">
+                                        <div class="summary-icon bg-quaternary">
+                                            <i class="fas fa-calendar-week"></i>
+                                        </div>
+                                    </div>
+                                    <div class="widget-summary-col">
+                                        <div class="summary">
+                                            <h4 class="title">Events</h4>
+                                            <div class="info">
+                                                <strong class="amount">{{\App\Event::all()->count()}}</strong>
+                                            </div>
+                                        </div>
+                                        <div class="summary-footer">
+                                            <a class="text-muted text-uppercase" href="{{url('events')}}">(view all)</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                     </div>
                 </div>
             </div>
@@ -894,8 +996,7 @@
                             <div class="col-md-12">
                                 <textarea id="description"
                                     class="form-control input-rounded {{ $errors->has('description') ? ' is-invalid' : '' }}"
-                                    rows="5" name="description" placeholder="Type description
-                                here">{{ old('decription') }}</textarea>
+                                    rows="5" name="description" placeholder="Type description here">{{ old('decription') }}</textarea>
                                 @if ($errors->has('description'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('description') }}</strong>
@@ -986,8 +1087,7 @@
                         <div class="col-md-12">
                             <textarea id="description"
                                 class="form-control input-rounded {{ $errors->has('description') ? ' is-invalid' : '' }}"
-                                rows="5" name="description" placeholder="Type description
-                                here">{{ old('decription') }}</textarea>
+                                rows="5" name="description" placeholder="Type description here">{{ old('decription') }}</textarea>
                             @if ($errors->has('description'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('description') }}</strong>

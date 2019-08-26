@@ -1,6 +1,82 @@
 @extends('layouts.app')
 
 @section('content')
+    <div id="editProductModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Product details</h4>
+                </div>
+                <form action="{{ route('update-company') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="product_id" id="product_id">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="inputRounded">Name <small
+                                        class="text-danger">*</small></label>
+                            <div class="col-md-12">
+                                <input type="text" value="{{ old('name') }}" id="name"
+                                       class="form-control input-rounded {{ $errors->has('title') ? ' is-invalid' : '' }}"
+                                       name="name">
+                                @if ($errors->has('name'))
+                                    <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('name') }}</strong>
+                        </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Company <small class="text-danger">*</small></label>
+
+                            <div class="col-md-12">
+                                <select class="form-control input-rounded col-md-12" name="company_id" id="company_id">
+
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Price <small
+                                        class="text-danger">*</small></label>
+                            <div class="col-md-12">
+                                <input type="text" value="{{ old('price') }}" id="price"
+                                       class="form-control input-rounded {{ $errors->has('address') ? ' is-invalid' : '' }}"
+                                       name="price">
+                                @if ($errors->has('price'))
+                                    <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('price') }}</strong>
+                        </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Description <small class="text-danger">*</small></label>
+                            <div class="col-md-12">
+                        <textarea id="description"
+                                  class="form-control input-rounded {{ $errors->has('description') ? ' is-invalid' : '' }}"
+                                  rows="5" name="description"
+                                  placeholder="Type description here">{{ old('description') }}</textarea>
+                                @if ($errors->has('description'))
+                                    <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('description') }}</strong>
+                        </span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-light text-success"><i class="fas fa-pen-square"></i> Update</button>
+                        <button type="button" class="btn btn-light text-danger" data-dismiss="modal"><i class="fas fa-window-close"></i> Close</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    {{--  edit modal  --}}
 <section role="main" class="content-body">
     <header class="page-header">
         {{--  <h2>Default Layout</h2>  --}}
@@ -8,7 +84,7 @@
         <div class="right-wrapper text-right">
             <ol class="breadcrumbs">
                 <li>
-                    <a href="index.html">
+                    <a href="/">
                         <i class="fas fa-home"></i>
                     </a>
                 </li>
@@ -70,7 +146,6 @@
     </div>
     <!-- end: page -->
 </section>
-
 
 @endsection
 @section('js')
