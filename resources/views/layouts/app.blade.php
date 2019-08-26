@@ -437,7 +437,24 @@
 {{--  full calendar  --}}
 <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
+<script>
+    $(document).ready(function () {
+    //dropify image tool
+    $('.dropify').dropify();
+    $('.dropify-clear').addClass('d-none');
+    });
+$(".image-upload").change(function() {
 
+      const file = $(".image-upload")[0].files[0];
+      // check if file is selected
+      if (file) {
+        $('#imgUpload').removeAttr('disabled');
+      }else{
+          $('#imgUpload').attr('disabled', true);
+      }
+    });
+
+</script>
 
 @yield('js')
 

@@ -36,7 +36,7 @@
                             <th>Name</th>
                             <th>Description</th>
                             <th>Start Date</th>
-                            <th>Start Date</th>
+                            <th>End Date</th>
                             <th>Price</th>
                             <th>Company</th>
                             <th>Action</th>
