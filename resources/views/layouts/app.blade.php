@@ -162,6 +162,12 @@ right: -235px;
           </button>
           <div class="collapse navbar-collapse" id="navigation">
               <ul class="navbar-nav ml-auto">
+                  <li class="search-bar input-group">
+                      <button class="btn btn-link" id="search-button" data-toggle="modal" data-target="#searchModal"><i
+                              class="tim-icons icon-zoom-split"></i>
+                          <span class="d-lg-none d-md-block">Search</span>
+                      </button>
+                  </li>
                   <li class="dropdown nav-item">
                       <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                           <div class="photo">
@@ -175,9 +181,9 @@ right: -235px;
                       <ul class="dropdown-menu dropdown-navbar">
                           <li class="dropdown-divider"></li>
                           <li class="nav-link text-center"><form method="POST" action="{{ route('logout') }}">
-                              @csrf
-                              <button class="btn btn-danger" type="submit">Logout</button>
-                            </form>
+  @csrf
+  <button class="btn btn-danger" type="submit">Logout</button>
+</form>
                           </li>
                       </ul>
                   </li>
