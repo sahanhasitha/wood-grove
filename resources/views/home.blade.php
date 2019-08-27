@@ -2,45 +2,9 @@
 
 @section('content')
     <section role="main" class="content-body">
-        {{--  <header class="page-header">
-            <h2>Default Layout</h2>
-
-            <div class="right-wrapper text-right">
-                <ol class="breadcrumbs">
-                    <li>
-                        <a href="/">
-                            <i class="fas fa-home"></i>
-                        </a>
-                    </li>
-                    <li><span>Layouts</span></li>
-                    <li><span>Default</span></li>
-                </ol>
-
-                <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>
-            </div>
-        </header>  --}}
-
         <!-- start: page -->
         <div class="row">
-            <div class="col-md-6">
-                <div class="alert alert-danger alert-dismissible fade show d-none warning-alert" role="alert">
-                    <strong>Something wrong!</strong> Your activity is not saving due to incorrect data insertion. check again!
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                <div class="card">
-                    <div class="card-header d-flex">
-                        <h4 class="card-title"><span style="color:mediumvioletred">Events</span> | <span style="color:mediumblue">Reservations</span></h4>
-
-                    </div>
-                    <div class="card-body">
-                        <div id='calendar'></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <div class="row mb-3">
                     <div class="col-xl-6">
                         <section class="card card-featured-left card-featured-primary mb-3">
@@ -142,9 +106,26 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-12">
+                <div class="alert alert-danger alert-dismissible fade show d-none warning-alert" role="alert">
+                    <strong>Something wrong!</strong> Your activity is not saving due to incorrect data insertion. check again!
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header d-flex">
+                        <h4 class="card-title"><span style="color:mediumvioletred">Events</span> | <span style="color:mediumblue">Reservations</span></h4>
+
+                    </div>
+                    <div class="card-body">
+                        <div id='calendar'></div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-
 
         {{--  <div class="row">
             <div class="col-lg-6 mb-3">
