@@ -172,6 +172,14 @@ right: -235px;
                               Log out
                           </p>
                       </a>
+                      <ul class="dropdown-menu dropdown-navbar">
+                          <li class="dropdown-divider"></li>
+                          <li class="nav-link text-center"><form method="POST" action="{{ route('logout') }}">
+                              @csrf
+                              <button class="btn btn-danger" type="submit">Logout</button>
+                            </form>
+                          </li>
+                      </ul>
                   </li>
                   <li class="separator d-lg-none"></li>
               </ul>
