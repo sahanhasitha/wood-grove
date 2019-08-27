@@ -109,12 +109,7 @@
     -->
              <div class="sidebar-wrapper">
                  <div class="logo">
-                     <a href="javascript:void(0)" class="simple-text logo-mini">
-                         WG
-                     </a>
-                     <a href="javascript:void(0)" class="simple-text logo-normal">
-                         Wood-Grove
-                     </a>
+                     <img src="{{ asset('img/main-logo.png') }}" alt="">
                  </div>
                  <ul class="nav">
                      <li class="{{ Request::is('home') ? 'active' : '' }}">

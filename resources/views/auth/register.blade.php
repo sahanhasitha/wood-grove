@@ -3,7 +3,7 @@
 @section('content')
     <div class="center-sign">
         <a href="/" class="logo float-left">
-            <img src="{{asset('img/logo.png')}}" height="54" alt="Porto Admin" />
+            <img src="{{asset('img/main-logo.png')}}" height="54" alt="Porto Admin" />
         </a>
 
         <div class="panel card-sign">
