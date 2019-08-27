@@ -67,6 +67,11 @@
        .form-control+.input-group-append .input-group-text, .form-control+.input-group-prepend .input-group-text {
        background-color: #333356;
        }
+       control+.input-group-prepend .input-group-text, .form-group .form-control+.input-group-append .input-group-text,
+       .input-group .form-control+.input-group-prepend .input-group-text, .input-group .form-control+.input-group-append
+       .input-group-text {
+       padding: 10px 18px 10px 18px!important;
+       }
     </style>
 
     @yield('css')
