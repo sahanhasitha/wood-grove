@@ -2,8 +2,8 @@
 
 @section('content')
 <section role="main" class="content-body">
-    <header class="page-header">
-        {{--  <h2>Default Layout</h2>  --}}
+    {{--  <header class="page-header">
+        <h2>Default Layout</h2>
 
         <div class="right-wrapper text-right">
             <ol class="breadcrumbs">
@@ -18,7 +18,7 @@
 
             <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>
         </div>
-    </header>
+    </header>  --}}
 
     <!-- start: page -->
     <div class="row">
@@ -32,6 +32,7 @@
             </div>
 
             @endif
+            <div class="card">
 <div class="card-header">
     <span>Fill all the fields to create new</span>
 </div>
@@ -91,7 +92,7 @@
     <div class="form-group">
         <label class="col-md-3 control-label" for="inputRounded">Company <small class="text-danger">*</small></label>
         <div class="col-md-12">
-            <select name="company_id" class="form-control">
+            <select name="company_id" class="form-control" id="company_id">
                 @foreach ($companies as $company)
                 <option {{ $user!=[]?$user->company_id==$company->id?'selected':'':'' }} value="{{ $company->id }}">{{ $company->name }}</option>
                 @endforeach
@@ -118,14 +119,14 @@
 </div>
 </form>
         </div>
+        </div>
          <div class="col-md-2">
-             <div class="card-body">
+
                  <div class="row">
                      <div class="col-md-12">
                          <a href="{{ route('users') }}" class="btn btn-warning"><i class="fas fa-arrow-circle-left"></i> Back</a>
                      </div>
                  </div>
-             </div>
          </div>
     </div>
     <!-- end: page -->
@@ -133,7 +134,9 @@
 @endsection
 @section('js')
 <script>
-
+    $(document).ready(function () {
+    $('#company_id').select2();
+    });
 $('#conf_password').on('keyup', function(){
     if($(this).val()==$('#password').val()){
         $('#submit-btn').removeAttr('disabled');

@@ -2,7 +2,7 @@
 
 @section('content')
     <section role="main" class="content-body">
-        <header class="page-header">
+        {{--  <header class="page-header">
             <h2>Default Layout</h2>
 
             <div class="right-wrapper text-right">
@@ -18,7 +18,7 @@
 
                 <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>
             </div>
-        </header>
+        </header>  --}}
 
         <!-- start: page -->
         <div class="row">
@@ -32,7 +32,7 @@
 
                 <div class="card">
                     <div class="card-header d-flex">
-                        <h5 class="card-title">Events | Reservations</h5>
+                        <h4 class="card-title"><span style="color:mediumvioletred">Events</span> | <span style="color:mediumblue">Reservations</span></h4>
 
                     </div>
                     <div class="card-body">
@@ -59,7 +59,7 @@
                                             </div>
                                         </div>
                                         <div class="summary-footer">
-                                            <a class="text-muted text-uppercase" href="{{url('products')}}">(view all)</a>
+                                            <a class="text-light text-uppercase" href="{{url('products')}}"><i class="fas fa-eye"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -83,7 +83,7 @@
                                             </div>
                                         </div>
                                         <div class="summary-footer">
-                                            <a class="text-muted text-uppercase" href="{{url('services')}}">(view all)</a>
+                                            <a class="text-light text-uppercase" href="{{url('services')}}"><i class="fas fa-eye"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -109,7 +109,7 @@
                                             </div>
                                         </div>
                                         <div class="summary-footer">
-                                            <a class="text-muted text-uppercase" href="{{url('reservations')}}">(view all)</a>
+                                            <a class="text-light text-uppercase" href="{{url('reservations')}}"><i class="fas fa-eye"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -133,7 +133,7 @@
                                             </div>
                                         </div>
                                         <div class="summary-footer">
-                                            <a class="text-muted text-uppercase" href="{{url('events')}}">(view all)</a>
+                                            <a class="text-light text-uppercase" href="{{url('events')}}"><i class="fas fa-eye"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -1129,7 +1129,7 @@
                         start: '{{ $event->start_date }}',
                         end: '{{ $event->end_date }}T23:59:59',
                         url: '{{ route('add-new-event', $event->id) }}',
-                        color: 'green'
+                        color: '#fd5d93'
                     },
                     @endforeach
                     //reservations

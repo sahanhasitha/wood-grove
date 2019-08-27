@@ -22,6 +22,7 @@ Route::get('home', 'HomeController@index')->name('home');
 Route::get('login/{provider}', 'Auth\SocialController@redirect');
 Route::get('login/{provider}/callback','Auth\SocialController@callback');
 Route::post('social-register','Auth\SocialController@doRegister')->name('social-register');
+// Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('types', 'CompanyController@types')->name('types');
 Route::get('add-new-type/{id?}','CompanyController@addNewType')->name('add-new-type');

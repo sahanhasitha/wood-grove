@@ -2,37 +2,20 @@
 
 @section('content')
 <section role="main" class="content-body">
-    <header class="page-header">
-        {{--  <h2>Default Layout</h2>  --}}
-
-        <div class="right-wrapper text-right">
-            <ol class="breadcrumbs">
-                <li>
-                    <a href="{{ route('home') }}">
-                        <i class="fas fa-home"></i>
-                    </a>
-                </li>
-                <li><span>Company Management</span></li>
-                <li><a href="{{ route('companies') }}"><span>Companies</span></a></li>
-                <li><span>Create New Company</span></li>
-            </ol>
-
-            <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>
-        </div>
-    </header>
-
     <!-- start: page -->
+
     <div class="row">
         <div class="col-md-10">
+        <div class="card">
 <div class="card-header">
     <span>Fill all the fields to create new</span>
+
 </div>
 <form action="{{ route($company!=[]?'update-company':'store-company-details') }}"
     method="POST">
 @csrf
  <input type="hidden" name="company_id" id="company_id" value="{{ $company!=[]?$company->id:'' }}">
 <div class="card-body">
-    <input type="hidden" name="type_id" id="type_id">
     <div class="modal-body">
         <div class="form-group">
             <label class="col-md-3 control-label" for="inputRounded">Name <small class="text-danger">*</small></label>
@@ -50,7 +33,7 @@
         <div class="form-group">
 <label class="col-md-3 control-label">Company Type <small class="text-danger">*</small></label>
 <div class="col-md-12">
-    <select class="form-control input-rounded col-md-12 {{ $errors->has('type_id') ? ' is-invalid' : '' }}" name="type_id">
+    <select class="form-control input-rounded col-md-12 {{ $errors->has('type_id') ? ' is-invalid' : '' }}" name="type_id" id="type_id">
                 <option selected disabled>--Select Company Type--</option>
 
             @foreach ($types as $type)
@@ -137,28 +120,31 @@
         </div>
 </div>
 <div class="card-footer">
-        <button type="submit" class="btn btn-success float-right"><i class="fas fa-save"></i> Create New Company</a>
+        <button type="submit" class="mb-4 btn btn-success float-right"><i class="fas fa-save"></i> Create New Company</a>
 
 </div>
+</div>
 </form>
+</div>
+    </div>
+        <div class="col-md-2">
+            <div class="row">
+                <div class="col-md-12">
+                   <a href="{{ route('companies') }}" class="btn btn-warning float-right"><i
+                           class="fas fa-arrow-circle-left"></i>
+                       Back</a>
+                </div>
+            </div>
         </div>
     </div>
-         <div class="col-md-2">
-             <div class="card-body">
-                 <div class="row">
-                     <div class="col-md-12">
-                         <a href="{{ route('companies') }}" class="btn btn-warning"><i class="fas fa-arrow-circle-left"></i> Back</a>
-                     </div>
-                 </div>
-             </div>
-         </div>
-    </div>
     <!-- end: page -->
+
 </section>
 @endsection
 @section('js')
 <script>
     $( document ).ready(function() {
+         $('#type_id').select2();
 $('#tags').tagsinput({
   typeahead: {
     source: function(query) {
