@@ -2,8 +2,8 @@
 
 @section('content')
 <section role="main" class="content-body">
-    <header class="page-header">
-        {{--  <h2>Default Layout</h2>  --}}
+    {{--  <header class="page-header">
+        <h2>Default Layout</h2>
 
         <div class="right-wrapper text-right">
             <ol class="breadcrumbs">
@@ -18,105 +18,45 @@
 
             <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>
         </div>
-    </header>
+    </header>  --}}
 
     <!-- start: page -->
-    <div class="row">
-        <div class="col-md-10">
-            <div class="card-header">
-                <span>All available Types</span>
-
-            </div>
-            <div class="card-body">
-                <table class="table table-light" id="types-table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>#</th>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($types as $type)
-                            <tr>
-                                <td>{{ $type->id }}</td>
-                                <td>{{ $type->title }}</td>
-                                <td>{{ $type->description }}</td>
-                                <td>
-                                    <a class="btn btn-light text-warning edit-types" data-id="{{ $type->id }}"><i class="fas fa-edit"></i></a>
-                                    <a class="btn btn-light text-danger delete-types" data-id="{{ $type->id }}"><i class="fas fa-trash"></i></a>
-                                </td>
-                            </tr>
-                                @endforeach
-                    </tbody>
-                </table>
-            </div>
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">All available Types</h5>
+            <a href="{{ route('add-new-type') }}" class="btn btn-light text-primary btn-block"><i
+                    class="fas fa-plus-square"></i>
+                Create</a>
         </div>
-        <div class="col-md-2">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <a href="{{ route('add-new-type') }}" class="btn btn-light text-primary btn-block"><i class="fas fa-plus-square"></i>
-                            Create</a>
-                    </div>
-                </div>
-            </div>
+        <div class="card-body">
+            <table class="table" id="types-table">
+                <thead class="header-table">
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($types as $type)
+                    <tr>
+                        <td>{{ $type->id }}</td>
+                        <td>{{ $type->title }}</td>
+                        <td>{{ $type->description }}</td>
+                        <td class="d-flex">
+                            <a class="btn btn-success edit-types" data-id="{{ $type->id }}"><i
+                                    class="fas fa-edit"></i></a>
+                            <a class="btn btn-danger delete-types" data-id="{{ $type->id }}"><i
+                                    class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
-    <!-- end: page -->
 </section>
-{{--  edit modal  --}}
-<div id="editModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Edit Type details</h4>
-            </div>
-            <form action="{{ route('update-type') }}" method="POST">
-            @csrf
-            <input type="hidden" name="type_id" id="type_id">
-            <div class="modal-body">
-                <div class="form-group">
-                    <label class="col-md-3 control-label" for="inputRounded">Title <small
-                            class="text-danger">*</small></label>
-                    <div class="col-md-12">
-                        <input type="text" value="{{ old('title') }}" id="title"
-                            class="form-control input-rounded {{ $errors->has('title') ? ' is-invalid' : '' }}"
-                            name="title">
-                        @if ($errors->has('title'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('title') }}</strong>
-                        </span>
-                        @endif
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Description <small class="text-danger">*</small></label>
-                    <div class="col-md-12">
-                        <textarea id="description"
-                            class="form-control input-rounded {{ $errors->has('description') ? ' is-invalid' : '' }}"
-                            rows="5" name="description"
-                            placeholder="Type description here">{{ old('description') }}</textarea>
-                        @if ($errors->has('description'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('description') }}</strong>
-                        </span>
-                        @endif
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-light text-success"><i class="fas fa-pen-square"></i> Update</button>
-                <button type="button" class="btn btn-light text-danger" data-dismiss="modal"><i class="fas fa-window-close"></i> Close</button>
-            </div>
-        </div>
-</form>
-    </div>
-</div>
-{{--  end edit modal  --}}
 
 @endsection
 @section('js')

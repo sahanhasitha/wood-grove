@@ -2,34 +2,21 @@
 
 @section('content')
 <section role="main" class="content-body">
-    <header class="page-header">
-        {{--  <h2>Default Layout</h2>  --}}
-
-        <div class="right-wrapper text-right">
-            <ol class="breadcrumbs">
-                <li>
-                    <a href="/">
-                        <i class="fas fa-home"></i>
-                    </a>
-                </li>
-
-                <li><span>Services</span></li>
-            </ol>
-
-            <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>
-        </div>
-    </header>
 
     <!-- start: page -->
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-12">
+             <div class="card">
             <div class="card-header">
                 <span>All available Services</span>
+                <a href="{{ route('add-new-service') }}" class="btn btn-light text-primary btn-block"><i
+                        class="fas fa-plus-square"></i>
+                    Create</a>
 
             </div>
             <div class="card-body">
-                <table class="table table-light" id="product-table">
-                    <thead class="thead-light">
+                <table class="table" id="product-table">
+                   <thead class="header-table">
                         <tr>
                             <th>#</th>
                             <th>Name</th>
@@ -47,24 +34,14 @@
                                 <td>{{ $service->decription }}</td>
                                 <td>{{ $service->price }}</td>
                                 <td>{{ $service->Company->name }}</td>
-                                <td>
-                                    <a class="btn btn-light text-warning edit-service" data-id="{{ $service->id }}"><i class="fas fa-edit"></i></a>
-                                    <a class="btn btn-light text-danger delete-service" data-id="{{ $service->id }}"><i class="fas fa-trash"></i></a>
+                                <td class="d-flex">
+                                    <a class="btn btn-success edit-service" data-id="{{ $service->id }}"><i class="fas fa-edit"></i></a>
+                                    <a class="btn btn-danger delete-service" data-id="{{ $service->id }}"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
                                 @endforeach
                     </tbody>
                 </table>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <a href="{{ route('add-new-service') }}" class="btn btn-light text-primary btn-block"><i class="fas fa-plus-square"></i>
-                            Create</a>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

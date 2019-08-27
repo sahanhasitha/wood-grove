@@ -2,29 +2,12 @@
 
 @section('content')
 <section role="main" class="content-body">
-    <header class="page-header">
-        {{--  <h2>Default Layout</h2>  --}}
-
-        <div class="right-wrapper text-right">
-            <ol class="breadcrumbs">
-                <li>
-                    <a href="{{ route('home') }}">
-                        <i class="fas fa-home"></i>
-                    </a>
-                </li>
-                <li><a href="{{ route('products') }}"><span>Products</span></a></li>
-                <li><span>Create New Product</span></li>
-            </ol>
-
-            <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>
-        </div>
-    </header>
-
     <!-- start: page -->
 
     <div class="row">
 
         <div class="col-md-12">
+            <div class="card">
             <div class="card-header">
                 Add Product Images to <strong>{{ $product->name }}</strong>
                 <a href="{{ route('products') }}" class="btn btn-success float-right"><i class="fas fa-check-double"></i> Finish</a>
@@ -50,7 +33,7 @@
             </div>
 
         </div>
-
+</div>
     </div>
     <!-- end: page -->
 </section>

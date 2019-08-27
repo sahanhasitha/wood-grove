@@ -2,21 +2,21 @@
 
 @section('content')
     <section role="main" class="content-body">
-        <header class="page-header">
-            <h2>Registrations</h2>
-        </header>
 
         <!-- start: page -->
         <div class="row">
-            <div class="col-md-12">
-                <div class="card-header">
-                    <span>All available Companies</span>
-                    <a href="{{ route('add-new-user') }}" class="btn btn-light text-primary float-right"><i class="fas fa-plus-square"></i> Create a User</a>
 
-                </div>
+                 <!-- start: page -->
+                 <div class="card">
+                     <div class="card-header">
+                         <h5 class="card-title">All Users</h5>
+                         <a href="{{ route('add-new-user') }}" class="btn btn-light text-primary btn-block"><i
+                                 class="fas fa-plus-square"></i>
+                             Create</a>
+                     </div>
                 <div class="card-body">
-                    <table class="table table-light" id="users-table">
-                        <thead class="thead-light">
+                     <table class="table" id="users-table">
+                         <thead class="header-table">
                             <tr>
                                 <th scope="col">System ID</th>
                                 <th scope="col">Name</th>
@@ -38,10 +38,8 @@
                                     <td>{{ $user->company['name'] }}</td>
                                     <td>{{ $user->created_at }}</td>
                                     <td>
-                                        <a class="btn btn-light text-warning edit-user"
-                                            data-id="{{ $user->id }}"><i class="fas fa-edit"></i></a>
-                                        <a class="btn btn-light text-danger delete-user"
-                                            data-id="{{ $user->id }}"><i class="fas fa-trash"></i></a>
+                                        <a class="btn btn-success edit-user" data-id="{{ $user->id }}"><i class="fas fa-edit"></i></a>
+                                        <a class="btn btn-danger delete-user" data-id="{{ $user->id }}"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
 
