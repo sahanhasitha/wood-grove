@@ -120,8 +120,9 @@
         </div>
 </div>
 <div class="card-footer">
+    <div class="col-md-12">
         <button type="submit" class="mb-4 btn btn-success-new float-right"><i class="fas fa-save"></i> Create New Company</a>
-
+</div>
 </div>
 </div>
 </form>

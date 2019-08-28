@@ -30,31 +30,70 @@ class CompanyService
         $this->companies = new Company();
         $this->tags = new CompanyHasTag();
     }
+    /**
+     * get all types
+     *
+     * @return types
+     */
     public function allTypes()
     {
         return $this->types->all()->sortBy('title');
     }
+    /**
+     * get all tags
+     *
+     * @return tags
+     */
     public function allTagsOnCompany($id)
     {
         return $this->tags->where('company_id', $id)->get();
     }
-
+    /**
+     * get type by id
+     *
+     * @param id
+     * @return types
+     */
     public function getType($id)
     {
         return $this->types->find($id);
     }
+    /**
+     * get tags by id
+     *
+     * @param id
+     * @return tags
+     */
     public function getTags($id)
     {
         return $this->tags->where('company_id', $id)->get();
     }
+    /**
+     * get image details
+     *
+     * @param id
+     * @return company_image
+     */
     public function getImageDetails($id)
     {
         return $this->company_image->where('company_id', $id)->get();
     }
+    /**
+     * find type by id
+     *
+     * @param id
+     * @return types
+     */
     public function find($id)
     {
              return $this->types->find($id);
     }
+    /**
+     * update ty
+     *
+     * @param id
+     * @return types
+     */
     public function updateType($request)
     {
         $types = $this->getType($request['type_id']);
