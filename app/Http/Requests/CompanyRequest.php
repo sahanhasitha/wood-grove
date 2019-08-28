@@ -29,7 +29,15 @@ class CompanyRequest extends FormRequest
             "phone" => "required|min:10|max:15",
             "description" => "required",
             "type_id" => "required",
-            "website" => 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
+            "website" => 'required|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
         ];
     }
+    public function messages()
+    {
+        return [
+            'phone.min' => 'The phone must be at least 10 digits',
+            'phone.max' => 'The phone may not be greater than 15 digits',
+        ];
+    }
+
 }

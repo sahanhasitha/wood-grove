@@ -29,7 +29,10 @@ class UserService
     {
         return $this->user->all();
     }
-
+    public function allNormal()
+    {
+        return $this->user->where('is_admin', '!=', 2)->get();
+    }
     public function get($id)
     {
         return $this->user->find($id);
