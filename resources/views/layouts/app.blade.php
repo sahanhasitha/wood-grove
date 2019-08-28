@@ -32,7 +32,8 @@
                       <span class="navbar-toggler-bar bar3"></span>
                   </button>
               </div>
-              <a class="navbar-brand" href="javascript:void(0)">Dashboard</a>
+              <a class="navbar-brand"
+                  href="javascript:void(0)">{{ str_replace('-', ' ', Route::currentRouteName()) }}</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
               aria-expanded="false" aria-label="Toggle navigation">
