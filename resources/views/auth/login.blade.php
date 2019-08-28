@@ -40,9 +40,9 @@
                         </div>
                         <div class="input-group">
                             <input id="password" type="password" class="form-control form-control-lg @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                            <span class="input-group-append">
+                            <span class="input-group-append" id="show">
 										<span class="input-group-text">
-											<i class="fas fa-lock"></i>
+											<i class="fas fa-lock-open" id="padlock"></i>
 										</span>
 									</span>
                             @error('password')
@@ -84,4 +84,28 @@
 
         <p class="text-center text-muted mt-3 mb-3">&copy; Copyright 2019. All Rights Reserved.</p>
     </div>
+@endsection
+@section('js')
+    <script>
+    function switchSearchFieldType(toPassword) {
+    if (toPassword != true) {
+        $('#padlock').removeClass('fa-lock');
+        $('#padlock').addClass('fa-lock-open');
+    $('#password').get(0).setAttribute('type', 'password');
+    } else {
+        $('#padlock').removeClass('fa-lock-open');
+        $('#padlock').addClass('fa-lock');
+    $('#password').get(0).setAttribute('type', 'text');
+    }
+    }
+
+    $('#show').click(function () {
+    if ( $('#password').prop('type') === 'password') {
+    switchSearchFieldType(true);
+    }
+    else {
+    switchSearchFieldType(false);
+    }
+    }).change();
+    </script>
 @endsection

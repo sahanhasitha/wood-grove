@@ -15,7 +15,7 @@
                          </a>
 
                      </li>
-                     @if(Auth::user()->is_admin==1)
+                     @if(Auth::user()->is_admin!=0)
                       <li class="{{ Request::is('types') ? 'active' : '' }}">
                           <a class="nav-link " href="{{ route('types') }}">
                               <i class="fas fa-cubes"></i><span>Types</span>

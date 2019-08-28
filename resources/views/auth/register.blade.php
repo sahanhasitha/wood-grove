@@ -53,8 +53,8 @@
                         <div class="input-group">
                             <input id="password" type="password" class="form-control form-control-lg @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                             <span class="input-group-append">
-										<span class="input-group-text">
-											<i class="fas fa-lock"></i>
+										<span class="input-group-text" id="show">
+											<i class="fas fa-lock-open" id="padlock"></i>
 										</span>
 									</span>
                             @error('password')
@@ -70,9 +70,9 @@
                         <label>Password Confirmation</label>
                         <div class="input-group">
                             <input id="password-confirm" type="password" class="form-control form-control-lg @error('password') is-invalid @enderror" name="password_confirmation" required >
-                            <span class="input-group-append">
+                            <span class="input-group-append" id="show-conf">
 										<span class="input-group-text">
-											<i class="fas fa-lock"></i>
+											<i class="fas fa-lock-open" id="padlock-conf"></i>
 										</span>
                                     </span>
                                      @error('password')
@@ -104,6 +104,9 @@
                         <a class="btn btn-twitter mb-3 ml-1 mr-1" href="{{url('login/azure')}}">Connect with <i class="fab fa-microsoft"></i></a>
                         <a class="btn btn-facebook mb-3 ml-1 mr-1" href="{{url('login/facebook')}}">Connect with <i class="fab fa-facebook-f"></i></a>
                     </div>
+                    <div class="mb1 text-center">
+                        <span class="text-light">Do you hava an account?</span> <a href="{{ route('login') }}">Login</a>
+                    </div>
 
                 </form>
             </div>
@@ -111,4 +114,38 @@
 
         <p class="text-center text-muted mt-3 mb-3">&copy; Copyright 2019. All Rights Reserved.</p>
     </div>
+@endsection
+@section('js')
+<script>
+    function switchSearchFieldType(toPassword) {
+        if (toPassword != true) {
+            $('#padlock').removeClass('fa-lock');
+            $('#padlock').addClass('fa-lock-open');
+            $('#password').get(0).setAttribute('type', 'password');
+        } else {
+            $('#padlock').removeClass('fa-lock-open');
+            $('#padlock').addClass('fa-lock');
+            $('#password').get(0).setAttribute('type', 'text');
+        }
+    }
+
+    $('#show').click(function () {
+        if ($('#password').prop('type') === 'password') {
+            switchSearchFieldType(true);
+        } else {
+            switchSearchFieldType(false);
+        }
+    }).change();
+    $('#show-conf').click(function () {
+        if ($('#password-confirm').prop('type') === 'password') {
+            $('#padlock-conf').removeClass('fa-lock-open');
+            $('#padlock-conf').addClass('fa-lock');
+            $('#password-confirm').get(0).setAttribute('type', 'text');
+        } else {
+            $('#padlock-conf').removeClass('fa-lock');
+            $('#padlock-conf').addClass('fa-lock-open');
+            $('#password-confirm').get(0).setAttribute('type', 'password');
+        }
+    }).change();
+</script>
 @endsection

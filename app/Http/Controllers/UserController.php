@@ -18,7 +18,7 @@ class UserController extends Controller
      */
     public function users()
     {
-        $response['users'] = UserFacade::all();
+        $response['users'] = UserFacade::allNormal();
         return view('users')->with($response);
     }
     /**
