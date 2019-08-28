@@ -44,7 +44,7 @@
 </div>
 <div class="card-footer">
     <div class="col-md-12">
-        <button type="submit" class="btn btn-success float-right"><i class="fas fa-save"></i> Create New Type</a>
+        <button type="submit" class="btn btn-success-new float-right"><i class="fas fa-save"></i> Create New Type</a>
     </div>
 </div>
 </form>

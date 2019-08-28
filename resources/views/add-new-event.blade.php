@@ -96,7 +96,7 @@
                     </div>
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-success float-right">Next <i class="fas fa-hand-point-right"></i></a>
+                        <button type="submit" class="btn btn-success-new float-right">Next <i class="fas fa-hand-point-right"></i></a>
                     </div>
                 </div>
             </form>

@@ -26,9 +26,9 @@
                         <td>{{ $type->title }}</td>
                         <td>{{ $type->description }}</td>
                         <td class="d-flex">
-                            <a class="btn btn-success edit-types" data-id="{{ $type->id }}"><i
+                            <a class="btn btn-success-new edit-types" data-id="{{ $type->id }}"><i
                                     class="fas fa-edit"></i></a>
-                            <a class="btn btn-danger delete-types" data-id="{{ $type->id }}"><i
+                            <a class="btn btn-danger-new delete-types" data-id="{{ $type->id }}"><i
                                     class="fas fa-trash"></i></a>
                         </td>
                     </tr>

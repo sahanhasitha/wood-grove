@@ -38,8 +38,8 @@
                                     <td>{{ $user->company['name'] }}</td>
                                     <td>{{ $user->created_at }}</td>
                                     <td>
-                                        <a class="btn btn-success edit-user" data-id="{{ $user->id }}"><i class="fas fa-edit"></i></a>
-                                        <a class="btn btn-danger delete-user" data-id="{{ $user->id }}"><i class="fas fa-trash"></i></a>
+                                        <a class="btn btn-success-new edit-user" data-id="{{ $user->id }}"><i class="fas fa-edit"></i></a>
+                                        <a class="btn btn-danger-new delete-user" data-id="{{ $user->id }}"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
 
@@ -114,7 +114,7 @@
 </div>
 <div class="card-footer">
     <div class="col-md-12">
-        <button type="submit" class="btn btn-success float-right"><i class="fas fa-save"></i> Update User</button>
+        <button type="submit" class="btn btn-success-new float-right"><i class="fas fa-save"></i> Update User</button>
     </div>
 </div>
                 </form>

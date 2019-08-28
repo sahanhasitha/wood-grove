@@ -135,7 +135,25 @@ right: -235px;
 .mobile-menu{
     display: none;
 }
+.fc-unthemed td.fc-today {
+background: #15161f;
+}
+.btn-success-new{
+        background-image: linear-gradient(to bottom left, #0098f0, #0098f0, #ffa604);
+}
+.btn-success-new:hover{
+background-image: linear-gradient(to bottom left, #111514, #0098f0, #ffa604)!important;
+}
+.btn-danger-new{
+        background-image: linear-gradient(to bottom left, #d41717, #d41717, #fd5d93);
+}
+.btn-danger-new:hover{
+background-image: linear-gradient(to bottom left, #111514, #d41717, #fd5d93)!important;
+}
 @media only screen and (max-width: 600px) {
+    .fc-unthemed td.fc-today {
+    background: #60648c;
+    }
 .row{
     margin-top:40px!important;
 }

@@ -110,8 +110,8 @@
                                 <td>{{ $product->price }}</td>
                                 <td>{{ $product->Company->name }}</td>
                                 <td class="d-flex">
-                                    <a class="btn btn-success edit-product" data-id="{{ $product->id }}"><i class="fas fa-edit"></i></a>
-                                    <a class="btn btn-danger delete-product" data-id="{{ $product->id }}"><i class="fas fa-trash"></i></a>
+                                    <a class="btn btn-success-new edit-product" data-id="{{ $product->id }}"><i class="fas fa-edit"></i></a>
+                                    <a class="btn btn-danger-new delete-product" data-id="{{ $product->id }}"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
                                 @endforeach

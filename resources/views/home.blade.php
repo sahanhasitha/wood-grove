@@ -1109,7 +1109,7 @@
                         start: '{{ $event->start_date }}',
                         end: '{{ $event->end_date }}T23:59:59',
                         url: '{{ route('add-new-event', $event->id) }}',
-                        color: '#fd5d93'
+                        color: '#e36159'
                     },
                     @endforeach
                     //reservations
@@ -1118,7 +1118,7 @@
                         start: '{{ $reservation->start_date }}',
                         end: '{{ $reservation->end_date }}T23:59:59',
                         url: '{{ route('add-new-reservation', $reservation->id) }}',
-                        color: 'blue'
+                        color: '#0588cc'
                         },
                     @endforeach
                 ],

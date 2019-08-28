@@ -35,8 +35,8 @@
                                 <td>{{ $service->price }}</td>
                                 <td>{{ $service->Company->name }}</td>
                                 <td class="d-flex">
-                                    <a class="btn btn-success edit-service" data-id="{{ $service->id }}"><i class="fas fa-edit"></i></a>
-                                    <a class="btn btn-danger delete-service" data-id="{{ $service->id }}"><i class="fas fa-trash"></i></a>
+                                    <a class="btn btn-success-new edit-service" data-id="{{ $service->id }}"><i class="fas fa-edit"></i></a>
+                                    <a class="btn btn-danger-new delete-service" data-id="{{ $service->id }}"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
                                 @endforeach

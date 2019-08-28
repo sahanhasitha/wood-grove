@@ -38,8 +38,8 @@
                                 <td>{{ $event->price }}</td>
                                 <td>{{ $event->Company->name }}</td>
                                 <td class="d-flex">
-                                    <a class="btn btn-success edit-event" data-id="{{ $event->id }}"><i class="fas fa-edit"></i></a>
-                                    <a class="btn btn-danger delete-event" data-id="{{ $event->id }}"><i class="fas fa-trash"></i></a>
+                                    <a class="btn btn-success-new edit-event" data-id="{{ $event->id }}"><i class="fas fa-edit"></i></a>
+                                    <a class="btn btn-danger-new delete-event" data-id="{{ $event->id }}"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
                                 @endforeach

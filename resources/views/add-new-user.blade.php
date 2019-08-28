@@ -114,7 +114,7 @@
 </div>
 <div class="card-footer">
     <div class="col-md-12">
-        <button type="submit" class="btn btn-success float-right" {{ $user!=[]?'':'disabled' }} id="submit-btn"><i class="fas fa-save"></i> Create New User</a>
+        <button type="submit" class="btn btn-success-new float-right" {{ $user!=[]?'':'disabled' }} id="submit-btn"><i class="fas fa-save"></i> Create New User</a>
     </div>
 </div>
 </form>

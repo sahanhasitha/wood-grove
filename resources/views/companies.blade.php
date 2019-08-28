@@ -31,8 +31,8 @@
                                 <td>{{ $company->address }}</td>
                                 <td>{{ $company->phone }}</td>
                                 <td class="d-flex">
-                                    <a class="btn btn-success edit-company" data-id="{{ $company->id }}"><i class="fas fa-edit"></i></a>
-                                    <a class="btn btn-danger delete-company" data-id="{{ $company->id }}"><i class="fas fa-trash"></i></a>
+                                    <a class="btn btn-success-new edit-company" data-id="{{ $company->id }}"><i class="fas fa-edit"></i></a>
+                                    <a class="btn btn-danger-new delete-company" data-id="{{ $company->id }}"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
                                 @endforeach
