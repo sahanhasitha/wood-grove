@@ -6,7 +6,7 @@
     <!-- start: page -->
     <div class="row">
         <div class="col-md-10">
-            <div class="card">
+            <div class="card card-on-mobile">
 
 
 <div class="card-header">
@@ -44,7 +44,7 @@
 </div>
 <div class="card-footer">
     <div class="col-md-12">
-        <button type="submit" class="btn btn-success float-right"><i class="fas fa-save"></i> Create New Type</a>
+        <button type="submit" class="btn btn-success-new float-right"><i class="fas fa-save"></i> Create New Type</a>
     </div>
 </div>
 </form>

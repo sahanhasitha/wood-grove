@@ -6,7 +6,7 @@
     <!-- start: page -->
     <div class="row">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card card-on-mobile">
             <div class="card-header">
                 <span>All available Reservations</span>
                 <a href="{{ route('add-new-reservation') }}" class="btn btn-light text-primary btn-block"><i class="fas fa-plus-square"></i>
@@ -35,8 +35,8 @@
                                 <td>{{ $reservation->end_date }}</td>
                                 <td>{{ $reservation->Company->name }}</td>
                                 <td class="d-flex">
-                                    <a class="btn btn-success edit-reservation" data-id="{{ $reservation->id }}"><i class="fas fa-edit"></i></a>
-                                    <a class="btn btn-danger delete-reservation" data-id="{{ $reservation->id }}"><i class="fas fa-trash"></i></a>
+                                    <a class="btn btn-success-new edit-reservation" data-id="{{ $reservation->id }}"><i class="fas fa-edit"></i></a>
+                                    <a class="btn btn-danger-new delete-reservation" data-id="{{ $reservation->id }}"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
                                 @endforeach

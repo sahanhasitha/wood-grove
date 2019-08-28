@@ -6,7 +6,7 @@
     <!-- start: page -->
     <div class="row">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card card-on-mobile">
             <div class="card-header">
                 <span>All available Companies</span>
             <a href="{{ route('add-new-company') }}" class="btn btn-light text-primary btn-block"><i class="fas fa-plus-square"></i>
@@ -31,8 +31,8 @@
                                 <td>{{ $company->address }}</td>
                                 <td>{{ $company->phone }}</td>
                                 <td class="d-flex">
-                                    <a class="btn btn-success edit-company" data-id="{{ $company->id }}"><i class="fas fa-edit"></i></a>
-                                    <a class="btn btn-danger delete-company" data-id="{{ $company->id }}"><i class="fas fa-trash"></i></a>
+                                    <a class="btn btn-success-new edit-company" data-id="{{ $company->id }}"><i class="fas fa-edit"></i></a>
+                                    <a class="btn btn-danger-new delete-company" data-id="{{ $company->id }}"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
                                 @endforeach

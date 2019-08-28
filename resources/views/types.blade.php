@@ -1,26 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<section role="main" class="content-body">
-    {{--  <header class="page-header">
-        <h2>Default Layout</h2>
-
-        <div class="right-wrapper text-right">
-            <ol class="breadcrumbs">
-                <li>
-                    <a href="/">
-                        <i class="fas fa-home"></i>
-                    </a>
-                </li>
-                <li><span>Company Management</span></li>
-                <li><span>Types</span></li>
-            </ol>
-
-            <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>
-        </div>
-    </header>  --}}
-
-    <!-- start: page -->
+<section role="main" class="content-body card-on-mobile">
     <div class="card">
         <div class="card-header">
             <h5 class="card-title">All available Types</h5>
@@ -45,9 +26,9 @@
                         <td>{{ $type->title }}</td>
                         <td>{{ $type->description }}</td>
                         <td class="d-flex">
-                            <a class="btn btn-success edit-types" data-id="{{ $type->id }}"><i
+                            <a class="btn btn-success-new edit-types" data-id="{{ $type->id }}"><i
                                     class="fas fa-edit"></i></a>
-                            <a class="btn btn-danger delete-types" data-id="{{ $type->id }}"><i
+                            <a class="btn btn-danger-new delete-types" data-id="{{ $type->id }}"><i
                                     class="fas fa-trash"></i></a>
                         </td>
                     </tr>

@@ -7,7 +7,7 @@
     <!-- start: page -->
     <div class="row">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card card-on-mobile">
             <div class="card-header">
                 <span>All available Events</span>
                 <a href="{{ route('add-new-event') }}" class="btn btn-light text-primary btn-block"><i class="fas fa-plus-square"></i>
@@ -38,8 +38,8 @@
                                 <td>{{ $event->price }}</td>
                                 <td>{{ $event->Company->name }}</td>
                                 <td class="d-flex">
-                                    <a class="btn btn-success edit-event" data-id="{{ $event->id }}"><i class="fas fa-edit"></i></a>
-                                    <a class="btn btn-danger delete-event" data-id="{{ $event->id }}"><i class="fas fa-trash"></i></a>
+                                    <a class="btn btn-success-new edit-event" data-id="{{ $event->id }}"><i class="fas fa-edit"></i></a>
+                                    <a class="btn btn-danger-new delete-event" data-id="{{ $event->id }}"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
                                 @endforeach

@@ -54,8 +54,6 @@
                             </div>
                         </section>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-xl-6">
                         <section class="card card-featured-left card-featured-tertiary mb-3">
                             <div class="card-body">
@@ -104,27 +102,28 @@
                             </div>
                         </section>
                     </div>
-                </div>
             </div>
+<div class="row">
 
-            <div class="col-md-12">
-                <div class="alert alert-danger alert-dismissible fade show d-none warning-alert" role="alert">
-                    <strong>Something wrong!</strong> Your activity is not saving due to incorrect data insertion. check again!
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+    <div class="col-md-12">
+        <div class="alert alert-danger alert-dismissible fade show d-none warning-alert" role="alert">
+            <strong>Something wrong!</strong> Your activity is not saving due to incorrect data insertion. check again!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
 
-                <div class="card">
-                    <div class="card-header d-flex">
-                        <h4 class="card-title"><span style="color:mediumvioletred">Events</span> | <span style="color:mediumblue">Reservations</span></h4>
+        <div class="card">
+            <div class="card-header d-flex">
+                <h4 class="card-title"><span style="color:mediumvioletred">Events</span> | <span style="color:mediumblue">Reservations</span></h4>
 
-                    </div>
-                    <div class="card-body">
-                        <div id='calendar'></div>
-                    </div>
-                </div>
             </div>
+            <div class="card-body">
+                <div id='calendar'></div>
+            </div>
+        </div>
+    </div>
+</div>
         </div>
 
         {{--  <div class="row">
@@ -1110,7 +1109,7 @@
                         start: '{{ $event->start_date }}',
                         end: '{{ $event->end_date }}T23:59:59',
                         url: '{{ route('add-new-event', $event->id) }}',
-                        color: '#fd5d93'
+                        color: '#e36159'
                     },
                     @endforeach
                     //reservations
@@ -1119,7 +1118,7 @@
                         start: '{{ $reservation->start_date }}',
                         end: '{{ $reservation->end_date }}T23:59:59',
                         url: '{{ route('add-new-reservation', $reservation->id) }}',
-                        color: 'blue'
+                        color: '#0588cc'
                         },
                     @endforeach
                 ],

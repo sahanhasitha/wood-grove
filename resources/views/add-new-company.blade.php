@@ -6,7 +6,7 @@
 
     <div class="row">
         <div class="col-md-10">
-        <div class="card">
+        <div class="card card-on-mobile">
 <div class="card-header">
     <span>Fill all the fields to create new</span>
 
@@ -120,7 +120,7 @@
         </div>
 </div>
 <div class="card-footer">
-        <button type="submit" class="mb-4 btn btn-success float-right"><i class="fas fa-save"></i> Create New Company</a>
+        <button type="submit" class="mb-4 btn btn-success-new float-right"><i class="fas fa-save"></i> Create New Company</a>
 
 </div>
 </div>

@@ -5,7 +5,7 @@
     <!-- start: page -->
     <div class="row">
         <div class="col-md-10">
-            <div class="card">
+            <div class="card card-on-mobile">
             <div class="card-header">
                 <span>Fill all the fields to create new</span>
             </div>
@@ -82,7 +82,7 @@
                     </div>
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-success float-right">Next <i class="fas fa-hand-point-right"></i></a>
+                        <button type="submit" class="btn btn-success-new float-right">Next <i class="fas fa-hand-point-right"></i></a>
                     </div>
                 </div>
             </form>
