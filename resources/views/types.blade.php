@@ -1,26 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<section role="main" class="content-body">
-    {{--  <header class="page-header">
-        <h2>Default Layout</h2>
-
-        <div class="right-wrapper text-right">
-            <ol class="breadcrumbs">
-                <li>
-                    <a href="/">
-                        <i class="fas fa-home"></i>
-                    </a>
-                </li>
-                <li><span>Company Management</span></li>
-                <li><span>Types</span></li>
-            </ol>
-
-            <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fas fa-chevron-left"></i></a>
-        </div>
-    </header>  --}}
-
-    <!-- start: page -->
+<section role="main" class="content-body card-on-mobile">
     <div class="card">
         <div class="card-header">
             <h5 class="card-title">All available Types</h5>

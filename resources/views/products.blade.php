@@ -82,7 +82,7 @@
     <!-- start: page -->
     <div class="row">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card card-on-mobile">
             <div class="card-header">
                 <span>All available Products</span>
                 <a href="{{ route('add-new-product') }}" class="btn btn-light text-primary btn-block"><i

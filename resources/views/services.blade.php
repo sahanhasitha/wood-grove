@@ -6,7 +6,7 @@
     <!-- start: page -->
     <div class="row">
         <div class="col-md-12">
-             <div class="card">
+             <div class="card card-on-mobile">
             <div class="card-header">
                 <span>All available Services</span>
                 <a href="{{ route('add-new-service') }}" class="btn btn-light text-primary btn-block"><i

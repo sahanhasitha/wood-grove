@@ -72,6 +72,13 @@
        .input-group-text {
        padding: 10px 18px 10px 18px!important;
        }
+       @media only screen and (max-width: 600px) {
+        .main-row{
+            margin: 30px!important;
+        }
+
+    }
+
     </style>
 
     @yield('css')
@@ -85,7 +92,7 @@
 
 
         <div class="inner-wrapper">
-            <div class="row" style=" display: flex; flex-flow: row wrap; justify-content: center;">
+            <div class="row main-row" style=" display: flex; flex-flow: row wrap; justify-content: center;">
 
                 @yield('content')
             </div>

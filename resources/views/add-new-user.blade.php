@@ -32,7 +32,7 @@
             </div>
 
             @endif
-            <div class="card">
+            <div class="card card-on-mobile">
 <div class="card-header">
     <span>Fill all the fields to create new</span>
 </div>

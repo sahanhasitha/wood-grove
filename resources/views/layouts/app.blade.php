@@ -132,6 +132,50 @@ right: -235px;
 .paginate_button:hover{
     color:#7f85c5;
 }
+.mobile-menu{
+    display: none;
+}
+@media only screen and (max-width: 600px) {
+.row{
+    margin-top:40px!important;
+}
+.card-on-mobile{
+margin-top: 70px!important;
+}
+.mobile-menu{
+    display: inline;
+}
+div.dataTables_wrapper div.dataTables_filter {
+position: relative;
+right: 0;
+}
+.dataTables_wrapper table.dataTable {
+overflow: scroll;
+overflow-x: auto;
+}
+.card{
+        overflow: auto;
+}
+}
+@media only screen and (min-width: 768px){
+html.scroll .sidebar-left, html.boxed .sidebar-left, html.sidebar-left-big-icons .sidebar-left {
+display: none;
+}
+.navbar-toggle{
+/* display: inline; */
+}
+.card{
+overflow: auto;
+}
+div.dataTables_wrapper div.dataTables_filter {
+position: relative;
+right: 0;
+}
+.dataTables_wrapper table.dataTable {
+overflow: scroll;
+overflow-x: auto;
+}
+}
      </style>
 
     @yield('css')
@@ -146,7 +190,8 @@ right: -235px;
       <div class="container-fluid">
           <div class="navbar-wrapper">
               <div class="navbar-toggle d-inline">
-                  <button type="button" class="navbar-toggler">
+                  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#menu"
+              aria-expanded="false" aria-label="Toggle navigation">
                       <span class="navbar-toggler-bar bar1"></span>
                       <span class="navbar-toggler-bar bar2"></span>
                       <span class="navbar-toggler-bar bar3"></span>
@@ -181,14 +226,69 @@ right: -235px;
                       <ul class="dropdown-menu dropdown-navbar">
                           <li class="dropdown-divider"></li>
                           <li class="nav-link text-center"><form method="POST" action="{{ route('logout') }}">
-  @csrf
-  <button class="btn btn-danger" type="submit">Logout</button>
-</form>
+                            @csrf
+                            <button class="btn btn-danger" type="submit">Logout</button>
+                            </form>
                           </li>
                       </ul>
                   </li>
                   <li class="separator d-lg-none"></li>
               </ul>
+          </div>
+        <div class="card mobile-menu">
+          <div class="collapse navbar-collapse" id="menu">
+              <ul class="navbar-nav ml-auto">
+                  <li class="{{ Request::is('products') ? 'active' : '' }}">
+                      <a class="nav-link " href="{{ route('home') }}">
+                          <i class="fas fa-home" aria-hidden="true"></i>
+                          <span>Home </span>
+                      </a>
+                  </li>
+                  @if(Auth::user()->is_admin==1)
+                  <li class="{{ Request::is('types') ? 'active' : '' }}">
+                      <a class="nav-link " href="{{ route('types') }}">
+                          <i class="fas fa-cubes"></i><span>Types</span>
+                      </a>
+                  </li>
+                  <li class="{{ Request::is('companies') ? 'active' : '' }}">
+                      <a class="nav-link " href="{{ route('companies') }}">
+                          <i class="fas fa-building"></i><span>Companies</span>
+                      </a>
+                  </li>
+                  <li class="{{ Request::is('users') ? 'active' : '' }}">
+                      <a class="nav-link " href="{{ route('users') }}">
+                          <i class="fas fa-users" aria-hidden="true"></i>
+                          <span>Users </span>
+                      </a>
+                  </li>
+                  @endif
+                  <li class="{{ Request::is('products') ? 'active' : '' }}">
+                      <a class="nav-link " href="{{ route('products') }}">
+                          <i class="fas fa-sitemap" aria-hidden="true"></i>
+                          <span>Products </span>
+                      </a>
+                  </li>
+                  <li class="{{ Request::is('services') ? 'active' : '' }}">
+                      <a class="nav-link " href="{{ route('services') }}">
+                          <i class="fab fa-buffer" aria-hidden="true"></i>
+                          <span>Services </span>
+                      </a>
+                  </li>
+                  <li class="{{ Request::is('reservations') ? 'active' : '' }}">
+                      <a class="nav-link " href="{{ route('reservations') }}">
+                          <i class="fas fa-book" aria-hidden="true"></i>
+                          <span>Reservations </span>
+                      </a>
+                  </li>
+                  <li class="{{ Request::is('events') ? 'active' : '' }}">
+                      <a class="nav-link " href="{{ route('events') }}">
+                          <i class="fas fa-calendar-week" aria-hidden="true"></i>
+                          <span>Events </span>
+                      </a>
+                  </li>
+
+              </ul>
+          </div>
           </div>
       </div>
   </nav>
@@ -255,7 +355,7 @@ right: -235px;
         @yield('content')
     </div>
 
-    <aside id="sidebar-right" class="sidebar-right">
+    {{-- <aside id="sidebar-right" class="sidebar-right">
         <div class="nano">
             <div class="nano-content">
                 <a href="#" class="mobile-close d-md-none">
@@ -321,7 +421,7 @@ right: -235px;
                 </div>
             </div>
         </div>
-    </aside>
+    </aside> --}}
 </section>
 <script src="{{asset('vendor/jquery/jquery.js')}}"></script>
 <script src="{{asset('vendor/jquery-browser-mobile/jquery.browser.mobile.js')}}"></script>

@@ -8,7 +8,7 @@
     <div class="row">
 
         <div class="col-md-12">
-             <div class="card">
+             <div class="card card-on-mobile">
             <div class="card-header">
                 Add Event Images to <strong>{{ $event->name }}</strong>
                 <a href="{{ route('events') }}" class="btn btn-success float-right"><i class="fas fa-check-double"></i> Finish</a>

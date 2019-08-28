@@ -6,7 +6,7 @@
     <!-- start: page -->
     <div class="row">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card card-on-mobile">
             <div class="card-header">
                 <span>All available Reservations</span>
                 <a href="{{ route('add-new-reservation') }}" class="btn btn-light text-primary btn-block"><i class="fas fa-plus-square"></i>

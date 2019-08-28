@@ -7,7 +7,7 @@
         <div class="row">
 
                  <!-- start: page -->
-                 <div class="card">
+                 <div class="card card-on-mobile">
                      <div class="card-header">
                          <h5 class="card-title">All Users</h5>
                          <a href="{{ route('add-new-user') }}" class="btn btn-light text-primary btn-block"><i
