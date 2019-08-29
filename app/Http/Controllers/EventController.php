@@ -73,6 +73,10 @@ class EventController extends Controller
     public function getEvent(Request $request)
     {
         $response['events'] = EventFacade::get($request->id);
+        $response['companies'] = CompanyFacade::allCompany();
+        foreach (EventFacade::getImages($request->id) as $key => $e_img) {
+            $response['event_images'][$key] = $e_img->Image;
+        }
         return json_encode($response);
     }
     /**

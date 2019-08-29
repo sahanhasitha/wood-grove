@@ -73,6 +73,10 @@ class ProductController extends Controller
     public function getProduct(Request $request)
     {
         $response['products'] = ProductFacade::get($request->id);
+        $response['companies'] = CompanyFacade::allCompany();
+        foreach (ProductFacade::getImages($request->id) as $key => $p_img) {
+            $response['product_images'][$key]=$p_img->Image;
+        }
         return json_encode($response);
     }
     /**

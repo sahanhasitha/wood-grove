@@ -37,9 +37,9 @@ class EventService
     {
         return $this->event->find($id);
     }
-    public function getImageDetails($id)
+    public function getImages($id)
     {
-        return $this->event->where('event_id', $id)->get();
+        return $this->event_image->where('event_id', $id)->get();
     }
     public function find($id)
     {

@@ -164,6 +164,37 @@
     .btn-danger-new:hover {
         background-image: linear-gradient(to bottom left, #111514, #d41717, #fd5d93) !important;
     }
+    .btn-primary-new{
+    background-image: linear-gradient(to bottom left, #d6b018, #d6b018, #fd5d93) !important;
+    }
+    .btn-primary-new:hover {
+    background-image: linear-gradient(to bottom left, #111514, #d6b018, #fd5d93) !important;
+    }
+    .card-user .author .block.block-two {
+        transform: rotate(30deg);
+        margin-top: -37px;
+        margin-left: -27px;
+    }
+    .card-user .author .block.block-one {
+                transform: rotate(150deg);
+                margin-top: -72px;
+                margin-left: -24px;
+        }
+        .card-user .author .block.block-three {
+            transform: rotate(170deg);
+            margin-top: -110px;
+            right: 7px;
+        }
+        .card-user .author .block.block-four {
+       transform: rotate(150deg);
+       margin-top: -68px;
+       right: 10px;
+        }
+        .modal-content {
+        background-color: #a5a5a5!important;
+            top: 50px!important;
+            position: absolute!important;
+        }
 
     @media only screen and (max-width: 600px) {
         .fc-unthemed td.fc-today {
@@ -195,6 +226,16 @@
         .card {
             overflow: auto;
         }
+         .btn-primary-new{
+            background-image: linear-gradient(to bottom left, #d6b018, #d6b018, #fd5d93) !important;
+
+         }
+         .btn-primary-new:hover {
+         background-image: linear-gradient(to bottom left, #111514, #d6b018, #fd5d93) !important;
+         }
+         .modal-content {
+         background-color: #a5a5a5!important;
+         }
     }
 
     @media only screen and (min-width: 768px) {
@@ -222,6 +263,16 @@
             overflow: scroll;
             overflow-x: auto;
         }
+         .btn-primary-new{
+             background-image: linear-gradient(to bottom left, #d6b018, #d6b018, #fd5d93) !important;
+
+         }
+         .btn-primary-new:hover {
+         background-image: linear-gradient(to bottom left, #111514, , #d6b018) !important;
+         }
+         .modal-content {
+         background-color: #a5a5a5!important;
+         }
     }
 </style>
 

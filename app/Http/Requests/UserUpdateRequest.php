@@ -26,6 +26,7 @@ class UserUpdateRequest extends FormRequest
         return [
             "name" => "required",
             "email" => "required|email",
+            "company_id" => "required",
         ];
     }
 }

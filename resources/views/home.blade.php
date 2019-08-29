@@ -985,10 +985,9 @@
                             </div>
                         </div>
 
-                        <div class="card-footer">
                             <button type="submit" class="btn btn-success float-right">Next <i
                                     class="fas fa-hand-point-right"></i></a>
-                        </div>
+
                 </form>
         </div>
     </div>
@@ -1075,11 +1074,8 @@
                             @endif
                         </div>
                     </div>
-
-                    <div class="card-footer">
                         <button type="submit" class="btn btn-success float-right">Next <i
                                 class="fas fa-hand-point-right"></i></a>
-                    </div>
             </form>
         </div>
     </div>

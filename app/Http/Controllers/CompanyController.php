@@ -62,6 +62,7 @@ class CompanyController extends Controller
         $response['types'] = CompanyFacade::getType($request->id);
         return json_encode($response);
     }
+
     /**
      * update type details.
      * @param Request

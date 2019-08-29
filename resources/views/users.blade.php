@@ -38,6 +38,7 @@
                                     <td>{{ $user->company['name'] }}</td>
                                     <td>{{ $user->created_at }}</td>
                                     <td>
+                                        <a class="btn btn-primary-new view-user" data-id="{{ $user->id }}"><i class="fas fa-eye"></i></a>
                                         <a class="btn btn-success-new edit-user" data-id="{{ $user->id }}"><i class="fas fa-edit"></i></a>
                                         <a class="btn btn-danger-new delete-user" data-id="{{ $user->id }}"><i class="fas fa-trash"></i></a>
                                     </td>
@@ -121,9 +122,65 @@
             </div>
         </div>
     </div>
+    {{--  view model  --}}
+    <div class="modal fade" id="user-view-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel">User Details</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="card card-user">
+                        <div class="card-body" >
+                            <p class="card-text" >
+                            </p>
+                            <div class="author">
+                                <div class="block block-one"></div>
+                                <div class="block block-two"></div>
+                                <div class="block block-three"></div>
+                                <div class="block block-four"></div>
+                                <a href="javascript:void(0)">
+                                    <img class="avatar" src="{{ asset('img/user.png') }}" alt="...">
+                                    <h5>System ID: <strong class="user-id text-warning"></strong></h5>
+                                    <h5>Name: <strong class="user-name text-warning text-uppercase"></strong></h5>
+                                    <h5>Email: <strong class="user-email text-warning"></strong></h5>
+                                    <h5>Registerd Trough: <strong class="user-reg text-warning"></strong></h5>
+                                    <h5><strong style="background-color:#9c5797; padding:6px;" class="user-level"></strong></h5>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{--  end view model  --}}
 @endsection
 @section('js')
     <script>
+
+        $('.view-user').on('click', function(){
+            var id = $(this).attr('data-id');
+            $.ajax({
+                url: 'view-get-user/',
+                type: 'GET',
+                data: {id:id},
+                dataType: 'json',
+                success: function(response){
+                    $('.user-id').text(response.users.id);
+                    $('.user-name').text(response.users.name);
+                    $('.user-email').text(response.users.email);
+                    $('.user-reg').text(response.users.provider!=null?response.users.provider:'Email');
+                    $('.user-level').text(response.users.is_admin==1?'Admin':'User');
+                    $('#user-view-modal').modal('show');
+                }
+            });
+        })
 
     $(document).ready(function () {
 

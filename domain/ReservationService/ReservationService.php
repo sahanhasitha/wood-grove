@@ -37,7 +37,7 @@ class ReservationService
     {
         return $this->reservation->find($id);
     }
-    public function getImageDetails($id)
+    public function getImages($id)
     {
         return $this->reservation_image->where('reservation_id', $id)->get();
     }

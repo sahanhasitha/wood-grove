@@ -28,7 +28,8 @@ class UserRequest extends FormRequest
             "email" => "required|email",
             "password" => "required",
             "conf_password" => "required",
-            "is_admin" => "required"
+            "is_admin" => "required",
+            "company_id" => "required",
         ];
     }
 }
