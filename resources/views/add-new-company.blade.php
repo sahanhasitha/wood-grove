@@ -48,7 +48,8 @@
     @endif
 </div>
 <div class="col-md-12">
- <a href="{{ route('add-new-type') }}" class="float-right text-warning" target="_blank">Creat new type</a>
+ <a href="{{ route('add-new-type') }}" class="float-right text-warning" target="_blank">
+    Creat new type</a>
 </div>
 
 
@@ -121,7 +122,13 @@
 </div>
 <div class="card-footer">
     <div class="col-md-12">
-        <button type="submit" class="mb-4 btn btn-success-new float-right"><i class="fas fa-save"></i> Create New Company</a>
+        <button type="submit" class="mb-4 btn btn-success-new float-right"><i class="fas fa-save"></i>
+            @if (Request::is('*/*'))
+            Update Company
+            @else
+            Creat new Company
+            @endif
+        </a>
 </div>
 </div>
 </div>

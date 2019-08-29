@@ -53,8 +53,9 @@ class ProductController extends Controller
     public function storeProductDetails(ProductRequest $request)
     {
         $response['product'] = ProductFacade::make($request->all());
-        return redirect()->route('add-new-product-image', $response['product']->id);
+        return redirect()->route('add-new-product-image', $response['product']->id)->with('success', 'Product is successfully added');
     }
+
     /**
      * Delete products details.
      * @param id
@@ -63,7 +64,7 @@ class ProductController extends Controller
     public function deleteProduct($id)
     {
         $response['products'] = ProductFacade::destroy($id);
-        return redirect()->back()->with($response)->with('success', 'Product is successfully deleted');
+        return redirect()->back()->with($response)->with('deleted', 'Product is successfully deleted');
     }
     /**
      * Get products details.
@@ -87,10 +88,6 @@ class ProductController extends Controller
     public function updateProduct(Request $request)
     {
         ProductFacade::updateProduct($request->all());
-        // dd($request->product_id);
-        return redirect()->route('add-new-product-image', $request->product_id);
-
-        // ProductFacade::updateProduct($request->all());
-        // return redirect(route('products'))->with('edited', 'Product is successfully Updated');
+        return redirect()->route('add-new-product-image', $request->product_id)->with('updated', 'Product is successfully updated');
     }
 }

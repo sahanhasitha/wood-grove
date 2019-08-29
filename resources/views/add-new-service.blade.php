@@ -32,12 +32,17 @@
                         <label class="col-md-3 control-label">Company <small class="text-danger">*</small></label>
 
                         <div class="col-md-12">
-                            <select class="form-control input-rounded col-md-12" name="company_id" id="company_id">
+                            <select class="form-control input-rounded col-md-12 {{ $errors->has('company_id') ? ' is-invalid' : '' }}" name="company_id" id="company_id">
                                 <option selected disabled>--Select Company--</option>
                                 @foreach ($companies as $company)
                                 <option value="{{ $company->id }}">{{ $company->name }}</option>
                                 @endforeach
                             </select>
+                            @if ($errors->has('company_id'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('company_id') }}</strong>
+                            </span>
+                            @endif
                         </div>
                     </div>
                     <div class="form-group">

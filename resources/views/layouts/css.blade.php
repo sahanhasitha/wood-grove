@@ -195,6 +195,9 @@
             top: 50px!important;
             position: absolute!important;
         }
+        .paginate_button {
+        cursor: pointer;
+        }
 
     @media only screen and (max-width: 600px) {
         .fc-unthemed td.fc-today {

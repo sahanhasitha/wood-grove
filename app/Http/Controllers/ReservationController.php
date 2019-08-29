@@ -53,7 +53,7 @@ class ReservationController extends Controller
     public function storeReservationDetails(ReservationRequest $request)
     {
         $response['reservation'] = ReservationFacade::make($request->all());
-        return redirect()->route('add-new-reservation-image', $response['reservation']->id);
+        return redirect()->route('add-new-reservation-image', $response['reservation']->id)->with('success', 'Reservation is successfully added');
     }
     /**
      * Delete reservations details.
@@ -63,7 +63,7 @@ class ReservationController extends Controller
     public function deleteReservation($id)
     {
         $response['reservations'] = ReservationFacade::destroy($id);
-        return redirect()->back()->with($response)->with('success', 'Product is successfully deleted');
+        return redirect()->back()->with($response)->with('deleted', 'Reservation is successfully deleted');
     }
     /**
      * Get reservations details.
@@ -81,12 +81,12 @@ class ReservationController extends Controller
     }
     /**
      * update reservations details.
-     * @param Request
+     * @param ReservationRequest
      * @return response
      */
-    public function updateReservation(Request $request)
+    public function updateReservation(ReservationRequest $request)
     {
         ReservationFacade::updateReservation($request->all());
-        return redirect()->route('add-new-reservation-image', $request->reservation_id);
+        return redirect()->route('add-new-reservation-image', $request->reservation_id)->with('updated', 'Reservation is successfully updated');
     }
 }

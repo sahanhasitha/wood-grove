@@ -61,7 +61,7 @@ Route::get('services', 'ServiceController@services')->name('services');
 Route::get('add-new-service/{id?}', 'ServiceController@addNewService')->name('add-new-service');
 Route::get('add-new-service-image/{id?}', 'ServiceController@addNewServiceImage')->name('add-new-service-image');
 Route::post('store-service-details', 'ServiceController@storeServiceDetails')->name('store-service-details');
-Route::get('delete-service/{id}', 'ServiceController@deleteService')->name('delete-service');
+Route::get('delete-service/{id}', 'ServiceController@deleteServices')->name('delete-service');
 Route::get('get-service', 'ServiceController@getService')->name('get-service');
 Route::post('update-service', 'ServiceController@updateService')->name('update-service');
 Route::post('upload-service-image', 'ImageController@uploadServiceImage')->name('upload-service-image');

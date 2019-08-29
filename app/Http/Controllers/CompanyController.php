@@ -40,7 +40,7 @@ class CompanyController extends Controller
     public function storeTypeDetails(TypesRequest $request)
     {
         $response['types']=CompanyFacade::makeType($request->all());
-        return redirect(route('types'))->with($response);
+        return redirect(route('types'))->with($response)->with('success', 'Type is successfully added');
     }
     /**
      * Delete type details.
@@ -50,7 +50,7 @@ class CompanyController extends Controller
     public function deleteType($id)
     {
         $response['types'] = CompanyFacade::destroyType($id);
-        return redirect()->back()->with($response)->with('success', 'Type is successfully deleted');
+        return redirect()->back()->with($response)->with('deleted', 'Type is successfully deleted');
     }
     /**
      * Get type details.
@@ -71,7 +71,7 @@ class CompanyController extends Controller
     public function updateType(TypesRequest $request)
     {
         CompanyFacade::updateType($request->all());
-        return redirect(route('types'))->with('success', 'Type is successfully Updated');
+        return redirect(route('types'))->with('updated', 'Type is successfully Updated');
     }
     /**
      * Show all companies.
@@ -108,7 +108,7 @@ class CompanyController extends Controller
     public function storeCompanyDetails(CompanyRequest $request)
     {
         $response['companies'] = CompanyFacade::makeCompany($request->all());
-        return redirect(route('companies'))->with($response);
+        return redirect(route('companies'))->with($response)->with('success', 'Company is successfully added');
     }
     /**
      * Delete company details.
@@ -118,7 +118,7 @@ class CompanyController extends Controller
     public function deleteCompany($id)
     {
         $response['companies'] = CompanyFacade::destroyCompany($id);
-        return redirect()->back()->with($response)->with('success', 'Company is successfully deleted');
+        return redirect()->back()->with($response)->with('deleted', 'Company is successfully deleted');
     }
     /**
      * Get company details.
@@ -140,7 +140,7 @@ class CompanyController extends Controller
     public function updateCompany(CompanyRequest $request)
     {
         CompanyFacade::updateCompany($request->all());
-        return redirect(route('companies'))->with('success', 'Company is successfully Updated');
+        return redirect(route('companies'))->with('updated', 'Company is successfully Updated');
     }
 
 

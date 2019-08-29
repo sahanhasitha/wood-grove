@@ -53,7 +53,7 @@ class ServiceController extends Controller
     public function storeServiceDetails(ServiceRequest $request)
     {
         $response['service'] = ServiceFacade::make($request->all());
-        return redirect()->route('add-new-service-image', $response['service']->id);
+        return redirect()->route('add-new-service-image', $response['service']->id)->with('success', 'Service is successfully added');
     }
     /**
      * Delete services details.
@@ -62,8 +62,8 @@ class ServiceController extends Controller
      */
     public function deleteServices($id)
     {
-        $response['services'] = ProductFacade::destroy($id);
-        return redirect()->back()->with($response)->with('success', 'Product is successfully deleted');
+        $response['services'] = ServiceFacade::destroy($id);
+        return redirect()->back()->with($response)->with('deleted', 'Service is successfully deleted');
     }
     /**
      * Get services details.
@@ -87,6 +87,6 @@ class ServiceController extends Controller
     public function updateService(Request $request)
     {
         ServiceFacade::updateServices($request->all());
-        return redirect()->route('add-new-service-image', $request->service_id);
+        return redirect()->route('add-new-service-image', $request->service_id)->with('updated', 'Service is successfully updated');
     }
 }

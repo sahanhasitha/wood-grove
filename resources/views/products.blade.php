@@ -107,7 +107,7 @@
                                 <td>{{ $product->id }}</td>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->description }}</td>
-                                <td>{{ $product->price }}</td>
+                                <td>{{ '$'.$product->price }}</td>
                                 <td>{{ $product->Company->name }}</td>
                                 <td class="d-flex">
                                     <a class="btn btn-primary-new view-product" data-id="{{ $product->id }}"><i class="fas fa-eye"></i></a>
@@ -216,7 +216,7 @@ $('.view-product').on('click', function(){
                     }
                     $('.product-id').text(response.products.id);
                     $('.product-title').text(response.products.name);
-                    $('.product-price').text(response.products.price);
+                    $('.product-price').text('$'+response.products.price);
                     $('.product-created-at').text(response.products.created_at);
                     $('.product-desc').text(response.products.description);
                     $('#product-view-modal').modal('show');
@@ -262,15 +262,20 @@ $('.edit-product').on('click', function(){
 
 })
 
-if("{{ session()->has('success') }}"){
-success();
+if("{{ session()->has('updated') }}"){
+success('Updated');
+}else if("{{ session()->has('deleted') }}"){
+success('Deleted');
+}else if("{{ session()->has('success') }}"){
+success('Added');
 }
 
-function success(){
+
+function success(msg){
     $.toast({
     heading: 'Success',
     position: 'bottom-right',
-    text: 'Your Company is successfully Deleted.',
+    text: 'Your Product is successfully '+msg,
     showHideTransition: 'slide',
     icon: 'success'
 })

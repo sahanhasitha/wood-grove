@@ -223,10 +223,12 @@ var user_id = $(this).attr("data-id");
 window.location.href = '{{ url("add-new-user") }}/' + user_id;
 })
 
-if("{{ session()->has('edited') }}"){
-success("Edited");
+if("{{ session()->has('updated') }}"){
+success('Updated');
 }else if("{{ session()->has('deleted') }}"){
-    success("Deleted");
+success('Deleted');
+}else if("{{ session()->has('success') }}"){
+success('Added');
 }
 
 function success(msg){
