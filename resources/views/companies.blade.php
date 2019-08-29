@@ -159,15 +159,19 @@ $('.edit-company').on('click', function(){
 
 })
 
-if("{{ session()->has('success') }}"){
-success();
+if("{{ session()->has('updated') }}"){
+success('Updated');
+}else if("{{ session()->has('deleted') }}"){
+success('Deleted');
+}else if("{{ session()->has('success') }}"){
+success('Added');
 }
 
-function success(){
+function success(msg){
     $.toast({
     heading: 'Success',
     position: 'bottom-right',
-    text: 'Your Company is successfully Updated.',
+    text: 'Your Company is successfully '+msg,
     showHideTransition: 'slide',
     icon: 'success'
 })

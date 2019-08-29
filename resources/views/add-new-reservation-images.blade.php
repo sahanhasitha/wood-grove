@@ -103,14 +103,17 @@ $('.text').on('click', function(){
         $('.dropify').dropify();
     });
     if ("{{ session()->has('success') }}") {
-        success();
+    success('Added');
+    }else if("{{ session()->has('updated') }}"){
+    success('Updated');
     }
 
-    function success() {
+
+    function success(msg) {
         $.toast({
             heading: 'Success',
             position: 'bottom-right',
-            text: 'Your Reservation is successfully Updated.',
+            text: 'Your Reservation is successfully '+msg,
             showHideTransition: 'slide',
             icon: 'success'
         })

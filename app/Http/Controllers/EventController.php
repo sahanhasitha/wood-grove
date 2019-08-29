@@ -53,7 +53,7 @@ class EventController extends Controller
     public function storeEventDetails(EventRequest $request)
     {
         $response['event'] = EventFacade::make($request->all());
-        return redirect()->route('add-new-event-image', $response['event']->id);
+        return redirect()->route('add-new-event-image', $response['event']->id)->with('success', 'Event is successfully added');
     }
     /**
      * Delete events details.
@@ -63,7 +63,7 @@ class EventController extends Controller
     public function deleteEvent($id)
     {
         $response['events'] = EventFacade::destroy($id);
-        return redirect()->back()->with($response)->with('success', 'Event is successfully deleted');
+        return redirect()->back()->with($response)->with('deleted', 'Event is successfully deleted');
     }
     /**
      * Get events details.
@@ -87,6 +87,6 @@ class EventController extends Controller
     public function updateEvent(EventRequest $request)
     {
         EventFacade::updateEvent($request->all());
-        return redirect()->route('add-new-event-image', $request->event_id);
+        return redirect()->route('add-new-event-image', $request->event_id)->with('updated', 'Event is successfully updated');
     }
 }

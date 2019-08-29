@@ -32,7 +32,7 @@
                                 <td>{{ $service->id }}</td>
                                 <td>{{ $service->name }}</td>
                                 <td>{{ $service->decription }}</td>
-                                <td>{{ $service->price }}</td>
+                                <td>{{ '$'.$service->price }}</td>
                                 <td>{{ $service->Company->name }}</td>
                                 <td class="d-flex">
                                     <a class="btn btn-primary-new view-service" data-id="{{ $service->id }}"><i class="fas fa-eye"></i></a>
@@ -142,7 +142,7 @@ $('.view-service').on('click', function(){
                     }
                     $('.service-id').text(response.services.id);
                     $('.service-title').text(response.services.name);
-                    $('.service-price').text(response.services.price);
+                    $('.service-price').text('$'+response.services.price);
                     $('.service-created-at').text(response.services.created_at);
                     $('.service-desc').text(response.services.description);
                     $('#service-view-modal').modal('show');
@@ -167,7 +167,7 @@ $('.delete-service').on('click', function(){
         content: 'This will permenantly delete your Product',
     buttons: {
         Delete: function () {
-            window.location.href = '{{ url("delete-product") }}/' + product_id;
+            window.location.href = '{{ url("delete-service") }}/' + product_id;
         },
         heyThere: {
             text: 'Cancel', // With spaces and symbols
@@ -186,15 +186,19 @@ $('.edit-service').on('click', function(){
 
 })
 
-if("{{ session()->has('success') }}"){
-success();
+if("{{ session()->has('updated') }}"){
+success('Updated');
+}else if("{{ session()->has('deleted') }}"){
+success('Deleted');
+}else if("{{ session()->has('success') }}"){
+success('Added');
 }
 
-function success(){
+function success(msg){
     $.toast({
     heading: 'Success',
     position: 'bottom-right',
-    text: 'Your Company is successfully Deleted.',
+    text: 'Your Company is successfully '+msg,
     showHideTransition: 'slide',
     icon: 'success'
 })

@@ -26,8 +26,8 @@ class UserRequest extends FormRequest
         return [
             "name" => "required",
             "email" => "required|email",
-            "password" => "required",
-            "conf_password" => "required",
+            "password" => "required|min:8",
+            "conf_password" => "required|min:8",
             "is_admin" => "required",
             "company_id" => "required",
         ];

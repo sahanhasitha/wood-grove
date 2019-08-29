@@ -54,13 +54,14 @@
     <div class="form-group">
         <label class="col-md-3 control-label" for="inputRounded">Email <small class="text-danger">*</small></label>
         <div class="col-md-12">
-            <input type="text" value="{{ $user!=[]?$user->email:old('email') }}"
+            <input type="text" value="{{ $user!=[]?$user->email:old('email') }}" id="email"
                 class="form-control input-rounded {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email">
             @if ($errors->has('email'))
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $errors->first('email') }}</strong>
             </span>
             @endif
+            <small id="email-warning" class="text-danger"></small>
         </div>
     </div>
     <div class="form-group" style="display: {{ $user!=[]?'none':'' }};">
@@ -73,6 +74,11 @@
                 <strong>{{ $errors->first('password') }}</strong>
             </span>
             @endif
+            <br>
+            <small id="pass-warning"></small>
+            <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" id="pass-pro-bar" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
         </div>
     </div>
     <div class="form-group" style="display: {{ $user!=[]?'none':'' }};">
@@ -120,7 +126,13 @@
 </div>
 <div class="card-footer">
     <div class="col-md-12">
-        <button type="submit" class="btn btn-success-new float-right" {{ $user!=[]?'':'disabled' }} id="submit-btn"><i class="fas fa-save"></i> Create New User</a>
+        <button type="submit" class="btn btn-success-new float-right" {{ $user!=[]?'':'disabled' }} id="submit-btn"><i class="fas fa-save"></i>
+            @if (Request::is('*/*'))
+            Edit User
+            @else
+            Create New User
+            @endif
+            </a>
     </div>
 </div>
 </form>
@@ -140,6 +152,24 @@
 @endsection
 @section('js')
 <script>
+
+function validateEmail(sEmail) {
+    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z])+\.)+([a-zA-Z]{2,4})+$/;
+    if (filter.test(sEmail)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+$('#email').on('blur', function(){
+    if(!validateEmail($(this).val())){
+        $('#email-warning').text('Email you entered is no valid. Check again!');
+    }else{
+        $('#email-warning').text(' ');
+    }
+})
+
     $(document).ready(function () {
     $('#company_id').select2();
     });
@@ -152,6 +182,39 @@ $('#conf_password').on('keyup', function(){
         $('#pass-success').addClass('d-none');
         $('#pass-danger').removeClass('d-none');
         $('#submit-btn').attr('disabled', 'disabled');
+    }
+})
+$('#password').on('keyup', function(){
+    if($(this).val().length>10){
+        var width=100;
+    }else{
+        var width=$(this).val().length*10;
+    }
+    $('#pass-pro-bar').css("width", width+'%');
+    if(width<79){
+        $('#pass-pro-bar').removeClass('bg-success');
+        $('#pass-pro-bar').removeClass('bg-warning');
+        $('#pass-pro-bar').addClass('bg-danger');
+        $('#pass-warning').text('Password is not enough to continue');
+        $('#pass-warning').removeClass('text-success');
+        $('#pass-warning').removeClass('text-warning');
+        $('#pass-warning').addClass('text-danger');
+    }else if(width<99){
+        $('#pass-pro-bar').removeClass('bg-danger');
+        $('#pass-pro-bar').removeClass('bg-success');
+        $('#pass-pro-bar').addClass('bg-warning');
+        $('#pass-warning').text('Password is too short');
+        $('#pass-warning').removeClass('text-success');
+        $('#pass-warning').removeClass('text-danger');
+        $('#pass-warning').addClass('text-warning');
+    }else{
+        $('#pass-pro-bar').removeClass('bg-danger');
+        $('#pass-pro-bar').removeClass('bg-warning');
+        $('#pass-pro-bar').addClass('bg-success');
+        $('#pass-warning').text('Password is strong');
+        $('#pass-warning').removeClass('text-danger');
+        $('#pass-warning').removeClass('text-warning');
+        $('#pass-warning').addClass('text-success');
     }
 })
 

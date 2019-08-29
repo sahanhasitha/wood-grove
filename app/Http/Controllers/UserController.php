@@ -46,7 +46,7 @@ class UserController extends Controller
         if($email_check==[])
         {
             $response['users'] = UserFacade::make($request->all());
-            return redirect(route('users'))->with($response);
+            return redirect(route('users'))->with($response)->with('success', 'User is successfully added');
         }else{
             return redirect()->back()->with('error', $request->email);
         }
@@ -59,7 +59,7 @@ class UserController extends Controller
     public function deleteUser($id)
     {
         $response['types'] = UserFacade::destroy($id);
-        return redirect()->back()->with($response)->with('success', 'User is successfully deleted');
+        return redirect()->back()->with($response)->with('deleted', 'User is successfully deleted');
     }
     /**
      * Get user details.
@@ -90,6 +90,6 @@ class UserController extends Controller
     public function updateUser(UserUpdateRequest $request)
     {
         UserFacade::updateUser($request->all());
-        return redirect(route('users'))->with('edited', 'User is successfully Updated');
+        return redirect(route('users'))->with('updated', 'User is successfully Updated');
     }
 }

@@ -101,14 +101,17 @@ $('.text').on('click', function(){
 
     });
     if ("{{ session()->has('success') }}") {
-        success();
+    success();
+    }else if("{{ session()->has('updated') }}"){
+    success('Updated');
     }
 
-    function success() {
+
+    function success(msg) {
         $.toast({
             heading: 'Success',
             position: 'bottom-right',
-            text: 'Your Company is successfully Updated.',
+            text: 'Your Company is successfully '+msg,
             showHideTransition: 'slide',
             icon: 'success'
         })

@@ -27,7 +27,7 @@ class ServiceRequest extends FormRequest
             "name" => "required",
             "company_id" => "required",
             "price" => "numeric|required",
-            "description" => "required",
+            "decription" => "required",
         ];
     }
 }
