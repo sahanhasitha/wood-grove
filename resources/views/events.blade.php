@@ -38,6 +38,7 @@
                                 <td>{{ $event->price }}</td>
                                 <td>{{ $event->Company->name }}</td>
                                 <td class="d-flex">
+                                    <a class="btn btn-primary-new view-event" data-id="{{ $event->id }}"><i class="fas fa-eye"></i></a>
                                     <a class="btn btn-success-new edit-event" data-id="{{ $event->id }}"><i class="fas fa-edit"></i></a>
                                     <a class="btn btn-danger-new delete-event" data-id="{{ $event->id }}"><i class="fas fa-trash"></i></a>
                                 </td>
@@ -59,11 +60,111 @@
     </div>
     <!-- end: page -->
 </section>
+{{--  view model  --}}
+<div class="modal fade" id="event-view-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">Event Details</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card card-user">
+                    <div class="card-body">
+                        <p class="card-text">
+                        </p>
+                        <div class="author">
+                            <div class="block block-one"></div>
+                            <div class="block block-two"></div>
+                            <div class="block block-three"></div>
+                            <div class="block block-four"></div>
+                            <a href="javascript:void(0)">
+                                <h5>System ID: <strong class="event-id text-warning"></strong></h5>
+                                <h5>Name: <strong class="event-title text-warning text-uppercase"></strong></h5>
+                                <h5>Start Date: <strong class="event-start text-warning text-uppercase"></strong></h5>
+                                <h5>End Date: <strong class="event-end text-warning text-uppercase"></strong></h5>
+                                <h5>Company: <strong class="event-company text-warning"></strong></h5>
+                                <h5>Created at: <strong class="event-created-at text-warning"></strong></h5>
+                                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner" id="carousel-images">
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                                        data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                                        data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                            </a>
+                        </div>
+                        <p></p>
+                        <div class="event-desc card-description">
 
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{--  end view model  --}}
 
 @endsection
 @section('js')
 <script>
+
+$('.view-event').on('click', function(){
+            var id = $(this).attr('data-id');
+            $.ajax({
+                url: 'get-event/',
+                type: 'GET',
+                data: {id:id},
+                dataType: 'json',
+                success: function(response){
+                    console.log(response);
+                    for(var i=0;response.companies.length>i;i++)
+                    {
+                        if(response.companies[i].id==response.events.company_id)
+                        {
+                            $('.event-company').text(response.companies[i].name);
+                        }
+                    }
+                    $( "div" ).remove( ".carousel-item" );
+                    if(response.event_images!=null){
+                        for(var j=0;response.event_images.length>j;j++)
+                        {
+                            if(j==0){
+                            var caro_image="<div class='carousel-item active'>"+
+                                "<img class='d-block w-100' src='{{ asset('uploads/thumb/370x310') }}/"+response.event_images[j].name+"'>"+
+                                "</div>";
+                                $("#carousel-images" ).append(caro_image);
+                            }else{
+                                var caro_image="<div class='carousel-item'>"+
+                                    "<img class='d-block w-100' src='{{ asset('uploads/thumb/370x310') }}/"+response.event_images[j].name+"'>"+
+                                    "</div>";
+                                $("#carousel-images" ).append(caro_image);
+                            }
+                        }
+                    }
+                    $('.event-id').text(response.events.id);
+                    $('.event-title').text(response.events.name);
+                    $('.event-start').text(response.events.start_date);
+                    $('.event-end').text(response.events.end_date);
+                    $('.event-created-at').text(response.events.created_at);
+                    $('.event-desc').text(response.events.description);
+                    $('#event-view-modal').modal('show');
+                }
+            });
+        })
+
     $(document).ready(function () {
         $('#event-table').DataTable({
              'columnDefs': [ {

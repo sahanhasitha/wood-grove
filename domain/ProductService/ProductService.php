@@ -38,9 +38,9 @@ class ProductService
     {
         return $this->product->find($id);
     }
-    public function getImageDetails($id)
+    public function getImages($id)
     {
-        return $this->company_image->where('company_id', $id)->get();
+        return $this->product_image->where('product_id', $id)->get();
     }
     public function find($id)
     {

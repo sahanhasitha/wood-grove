@@ -26,6 +26,7 @@
                         <td>{{ $type->title }}</td>
                         <td>{{ $type->description }}</td>
                         <td class="d-flex">
+                                        <a class="btn btn-primary-new view-type" data-id="{{ $type->id }}"><i class="fas fa-eye"></i></a>
                             <a class="btn btn-success-new edit-types" data-id="{{ $type->id }}"><i
                                     class="fas fa-edit"></i></a>
                             <a class="btn btn-danger-new delete-types" data-id="{{ $type->id }}"><i
@@ -38,10 +39,77 @@
         </div>
     </div>
 </section>
+{{--  view model  --}}
+<div class="modal fade" id="type-view-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">Type Details</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card card-user">
+                    <div class="card-body">
+                        <p class="card-text">
+                        </p>
+                        <div class="author">
+                            <div class="block block-one"></div>
+                            <div class="block block-two"></div>
+                            <div class="block block-three"></div>
+                            <div class="block block-four"></div>
+                            <a href="javascript:void(0)">
+                                <h5>System ID: <strong class="type-id text-warning"></strong></h5>
+                                <h5>Title: <strong class="type-title text-warning text-uppercase"></strong></h5>
+                                <h5>Created at: <strong class="type-created-at text-warning"></strong></h5>
+                            </a>
+                        </div>
+                        <p></p>
+                            <div class="type-desc card-description">
 
+                            </div>
+                    </div>
+                    {{--  <div class="card-footer">
+                            <div class="button-container">
+                                <button href="javascript:void(0)" class="btn btn-icon btn-round btn-facebook">
+                                    <i class="fab fa-facebook"></i>
+                                </button>
+                                <button href="javascript:void(0)" class="btn btn-icon btn-round btn-twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </button>
+                                <button href="javascript:void(0)" class="btn btn-icon btn-round btn-google">
+                                    <i class="fab fa-google-plus"></i>
+                                </button>
+                            </div>
+                        </div>  --}}
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{--  end view model  --}}
 @endsection
 @section('js')
 <script>
+    $('.view-type').on('click', function(){
+            var id = $(this).attr('data-id');
+            $.ajax({
+                url: 'get-type/',
+                type: 'GET',
+                data: {id:id},
+                dataType: 'json',
+                success: function(response){
+                    $('.type-id').text(response.types.id);
+                    $('.type-title').text(response.types.title);
+                    $('.type-created-at').text(response.types.created_at);
+                    $('.type-desc').text(response.types.description);
+                    $('#type-view-modal').modal('show');
+                }
+            });
+        })
     $(document).ready(function () {
          @if (count($errors) > 0)
          $('#editModal').modal('show');

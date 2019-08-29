@@ -70,9 +70,13 @@ class ServiceController extends Controller
      * @param Request
      * @return response
      */
-    public function getServices(Request $request)
+    public function getService(Request $request)
     {
-        $response['services'] = ProductFacade::get($request->id);
+        $response['services'] = ServiceFacade::get($request->id);
+        $response['companies'] = CompanyFacade::allCompany();
+        foreach (ServiceFacade::getImages($request->id) as $key => $s_img) {
+            $response['service_images'][$key] = $s_img->Image;
+        }
         return json_encode($response);
     }
     /**

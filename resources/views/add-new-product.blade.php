@@ -34,6 +34,7 @@
 
                         <div class="col-md-12">
                             <select class="form-control input-rounded col-md-12" name="company_id" id="company_id">
+                                <option selected disabled>--Select Company--</option>
                                 @foreach ($companies as $company)
                                 <option value="{{ $company->id }}">{{ $company->name }}</option>
                                 @endforeach

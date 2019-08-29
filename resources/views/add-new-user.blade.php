@@ -92,11 +92,17 @@
     <div class="form-group">
         <label class="col-md-3 control-label" for="inputRounded">Company <small class="text-danger">*</small></label>
         <div class="col-md-12">
-            <select name="company_id" class="form-control" id="company_id">
+            <select name="company_id" class="form-control {{ $errors->has('company_id') ? ' is-invalid' : '' }}" id="company_id">
+                                <option selected disabled>--Select Company--</option>
                 @foreach ($companies as $company)
                 <option {{ $user!=[]?$user->company_id==$company->id?'selected':'':'' }} value="{{ $company->id }}">{{ $company->name }}</option>
                 @endforeach
             </select>
+             @if ($errors->has('company_id'))
+             <span class="invalid-feedback" role="alert">
+                 <strong>{{ $errors->first('company_id') }}</strong>
+             </span>
+             @endif
         </div>
     </div>
     <div class="form-group">

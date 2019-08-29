@@ -35,6 +35,7 @@
                                 <td>{{ $service->price }}</td>
                                 <td>{{ $service->Company->name }}</td>
                                 <td class="d-flex">
+                                    <a class="btn btn-primary-new view-service" data-id="{{ $service->id }}"><i class="fas fa-eye"></i></a>
                                     <a class="btn btn-success-new edit-service" data-id="{{ $service->id }}"><i class="fas fa-edit"></i></a>
                                     <a class="btn btn-danger-new delete-service" data-id="{{ $service->id }}"><i class="fas fa-trash"></i></a>
                                 </td>
@@ -47,86 +48,108 @@
     </div>
     <!-- end: page -->
 </section>
-{{--  edit modal  --}}
-<div id="editProductModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
+{{--  view model  --}}
+<div class="modal fade" id="service-view-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Edit Product details</h4>
+                <h4 class="modal-title" id="exampleModalLabel">Service Details</h4>
             </div>
-            <form action="{{ route('update-company') }}" method="POST">
-            @csrf
-            <input type="hidden" name="product_id" id="product_id">
             <div class="modal-body">
-                <div class="form-group">
-                    <label class="col-md-3 control-label" for="inputRounded">Name <small
-                            class="text-danger">*</small></label>
-                    <div class="col-md-12">
-                        <input type="text" value="{{ old('name') }}" id="name"
-                            class="form-control input-rounded {{ $errors->has('title') ? ' is-invalid' : '' }}"
-                            name="name">
-                        @if ($errors->has('name'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('name') }}</strong>
-                        </span>
-                        @endif
+                <div class="card card-user">
+                    <div class="card-body">
+                        <p class="card-text">
+                        </p>
+                        <div class="author">
+                            <div class="block block-one"></div>
+                            <div class="block block-two"></div>
+                            <div class="block block-three"></div>
+                            <div class="block block-four"></div>
+                            <a href="javascript:void(0)">
+                                <h5>System ID: <strong class="service-id text-warning"></strong></h5>
+                                <h5>Name: <strong class="service-title text-warning text-uppercase"></strong></h5>
+                                <h5>Price: <strong class="service-price text-warning text-uppercase"></strong></h5>
+                                <h5>Company: <strong class="service-company text-warning"></strong></h5>
+                                <h5>Created at: <strong class="service-created-at text-warning"></strong></h5>
+                                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner" id="carousel-images">
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                                        data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                                        data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                            </a>
+                        </div>
+                        <p></p>
+                        <div class="service-desc card-description">
+
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Company <small class="text-danger">*</small></label>
 
-                    <div class="col-md-12">
-                        <select class="form-control input-rounded col-md-12" name="company_id" id="company_id">
-
-                        </select>
-                    </div>
-
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Price <small
-                            class="text-danger">*</small></label>
-                    <div class="col-md-12">
-                        <input type="text" value="{{ old('price') }}" id="price"
-                            class="form-control input-rounded {{ $errors->has('address') ? ' is-invalid' : '' }}"
-                            name="price">
-                        @if ($errors->has('price'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('price') }}</strong>
-                        </span>
-                        @endif
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Description <small class="text-danger">*</small></label>
-                    <div class="col-md-12">
-                        <textarea id="description"
-                            class="form-control input-rounded {{ $errors->has('description') ? ' is-invalid' : '' }}"
-                            rows="5" name="description"
-                            placeholder="Type description here">{{ old('description') }}</textarea>
-                        @if ($errors->has('description'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('description') }}</strong>
-                        </span>
-                        @endif
-                    </div>
-                </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-light text-success"><i class="fas fa-pen-square"></i> Update</button>
-                <button type="button" class="btn btn-light text-danger" data-dismiss="modal"><i class="fas fa-window-close"></i> Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
-</form>
     </div>
 </div>
-{{--  end edit modal  --}}
+{{--  end view model  --}}
 
 @endsection
 @section('js')
 <script>
+
+$('.view-service').on('click', function(){
+            var id = $(this).attr('data-id');
+            $.ajax({
+                url: 'get-service/',
+                type: 'GET',
+                data: {id:id},
+                dataType: 'json',
+                success: function(response){
+                    for(var i=0;response.companies.length>i;i++)
+                    {
+                        if(response.companies[i].id==response.services.company_id)
+                        {
+                            $('.service-company').text(response.companies[i].name);
+                        }
+                    }
+                    $( "div" ).remove( ".carousel-item" );
+                    if(response.service_images!=null){
+                        for(var j=0;response.service_images.length>j;j++)
+                        {
+                            if(j==0){
+                            var caro_image="<div class='carousel-item active'>"+
+                                "<img class='d-block w-100' src='{{ asset('uploads/thumb/370x310') }}/"+response.service_images[j].name+"'>"+
+                                "</div>";
+                                $("#carousel-images" ).append(caro_image);
+                            }else{
+                                var caro_image="<div class='carousel-item'>"+
+                                    "<img class='d-block w-100' src='{{ asset('uploads/thumb/370x310') }}/"+response.service_images[j].name+"'>"+
+                                    "</div>";
+                                $("#carousel-images" ).append(caro_image);
+                            }
+                        }
+                    }
+                    $('.service-id').text(response.services.id);
+                    $('.service-title').text(response.services.name);
+                    $('.service-price').text(response.services.price);
+                    $('.service-created-at').text(response.services.created_at);
+                    $('.service-desc').text(response.services.description);
+                    $('#service-view-modal').modal('show');
+                }
+            });
+        })
+
     $(document).ready(function () {
         $('#product-table').DataTable({
              'columnDefs': [ {

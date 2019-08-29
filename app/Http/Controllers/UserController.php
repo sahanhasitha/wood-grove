@@ -62,7 +62,7 @@ class UserController extends Controller
         return redirect()->back()->with($response)->with('success', 'User is successfully deleted');
     }
     /**
-     * Get type details.
+     * Get user details.
      * @param Request
      * @return response
      */
@@ -70,6 +70,16 @@ class UserController extends Controller
     {
         $response['users'] = UserFacade::get($request->id);
         $response['companies'] = CompanyFacade::allCompany();
+        return json_encode($response);
+    }
+    /**
+     * Get type details.
+     * @param Request
+     * @return response
+     */
+    public function viewGetUser(Request $request)
+    {
+        $response['users'] = UserFacade::get($request->id);
         return json_encode($response);
     }
     /**

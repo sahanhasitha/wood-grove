@@ -37,7 +37,7 @@ class ServiceService
     {
         return $this->service->find($id);
     }
-    public function getImageDetails($id)
+    public function getImages($id)
     {
         return $this->service_image->where('service_id', $id)->get();
     }

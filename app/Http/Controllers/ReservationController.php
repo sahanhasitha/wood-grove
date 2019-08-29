@@ -73,6 +73,10 @@ class ReservationController extends Controller
     public function getReservation(Request $request)
     {
         $response['reservations'] = ReservationFacade::get($request->id);
+        $response['companies'] = CompanyFacade::allCompany();
+        foreach (ReservationFacade::getImages($request->id) as $key => $r_img) {
+            $response['reservation_images'][$key] = $r_img->Image;
+        }
         return json_encode($response);
     }
     /**

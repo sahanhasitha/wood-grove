@@ -110,6 +110,7 @@
                                 <td>{{ $product->price }}</td>
                                 <td>{{ $product->Company->name }}</td>
                                 <td class="d-flex">
+                                    <a class="btn btn-primary-new view-product" data-id="{{ $product->id }}"><i class="fas fa-eye"></i></a>
                                     <a class="btn btn-success-new edit-product" data-id="{{ $product->id }}"><i class="fas fa-edit"></i></a>
                                     <a class="btn btn-danger-new delete-product" data-id="{{ $product->id }}"><i class="fas fa-trash"></i></a>
                                 </td>
@@ -122,10 +123,107 @@
     </div>
     <!-- end: page -->
 </section>
+{{--  view model  --}}
+<div class="modal fade" id="product-view-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">Product Details</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card card-user">
+                    <div class="card-body">
+                        <p class="card-text">
+                        </p>
+                        <div class="author">
+                            <div class="block block-one"></div>
+                            <div class="block block-two"></div>
+                            <div class="block block-three"></div>
+                            <div class="block block-four"></div>
+                            <a href="javascript:void(0)">
+                                <h5>System ID: <strong class="product-id text-warning"></strong></h5>
+                                <h5>Name: <strong class="product-title text-warning text-uppercase"></strong></h5>
+                                <h5>Price: <strong class="product-price text-warning text-uppercase"></strong></h5>
+                                <h5>Company: <strong class="product-company text-warning"></strong></h5>
+                                <h5>Created at: <strong class="product-created-at text-warning"></strong></h5>
+                                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner" id="carousel-images">
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                                        data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                                        data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                            </a>
+                        </div>
+                        <p></p>
+                        <div class="product-desc card-description">
 
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{--  end view model  --}}
 @endsection
 @section('js')
 <script>
+
+$('.view-product').on('click', function(){
+            var id = $(this).attr('data-id');
+            $.ajax({
+                url: 'get-product/',
+                type: 'GET',
+                data: {id:id},
+                dataType: 'json',
+                success: function(response){
+                    for(var i=0;response.companies.length>i;i++)
+                    {
+                        if(response.companies[i].id==response.products.company_id)
+                        {
+                            $('.product-company').text(response.companies[i].name);
+                        }
+                    }
+                    $( "div" ).remove( ".carousel-item" );
+                    if(response.product_images!=null){
+                        for(var j=0;response.product_images.length>j;j++)
+                        {
+                            if(j==0){
+                            var caro_image="<div class='carousel-item active'>"+
+                                "<img class='d-block w-100' src='{{ asset('uploads/thumb/370x310') }}/"+response.product_images[j].name+"'>"+
+                                "</div>";
+                                $("#carousel-images" ).append(caro_image);
+                            }else{
+                                var caro_image="<div class='carousel-item'>"+
+                                    "<img class='d-block w-100' src='{{ asset('uploads/thumb/370x310') }}/"+response.product_images[j].name+"'>"+
+                                    "</div>";
+                                $("#carousel-images" ).append(caro_image);
+                            }
+                        }
+                    }
+                    $('.product-id').text(response.products.id);
+                    $('.product-title').text(response.products.name);
+                    $('.product-price').text(response.products.price);
+                    $('.product-created-at').text(response.products.created_at);
+                    $('.product-desc').text(response.products.description);
+                    $('#product-view-modal').modal('show');
+                }
+            });
+        })
+
     $(document).ready(function () {
         $('#product-table').DataTable({
             'columnDefs': [ {
